@@ -41,7 +41,7 @@ var __delete  = "i/delete.png",
     __filters = [],
     __matches = [], // 20350
     __have = [],
-    __e = [],
+    __exclude = [],
     __effects = [
         ["Cure Disease", 21, 1],
         ["Damage Health", 3, 0],
@@ -300,10 +300,10 @@ function refresh1(a) {
         d = $("#negative").prop("checked"),
         f = $("#three").prop("checked"),
         h = parseInt($("#max_results").val(), 10),
-        k = "<div id='ingredients' style='border:1px solid #ccc;padding-left:5px;width:260'><h4 style='margin:0;padding:0'>Your Ingredients: Icon Legend</h4><br/><img src='" + __delete + "'/> = I don't have this <br/><img src='" + __sadd + "'/> = Show recipes that have this<br/><img src='" + __sdelete + "'/> = e recipes that have this<br/><hr/><div style='line-height:30px'>";
+        k = "<div id='ingredients' style='border:1px solid #ccc;padding-left:5px;width:260'><h4 style='margin:0;padding:0'>Your Ingredients: Icon Legend</h4><br/><img src='" + __delete + "'/> = I don't have this <br/><img src='" + __sadd + "'/> = Show recipes that have this<br/><img src='" + __sdelete + "'/> = Exclude recipes that have this<br/><hr/><div style='line-height:30px'>";
     __have.sort(function(a, b) {return a - b});
     for (var e = 0, m = __have.length; e < m; e++) k += "<a href='#' onclick='__have.splice(" + e + ",1); return remove_item(" + __have[e] + ");'><img src='" + __delete + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",true)'><img src='" + __sadd + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",false)'><img src='" + __sdelete + "'/></a>&nbsp;&nbsp; <span class='ingredient' data-name='" + __have[e] + "'>" + upper_first(__rel_ingredient[__have[e]]) + "</span><br/>";
-    document.getElementById("added").innerHTML = k + e() + "</div></div>";
+    document.getElementById("added").innerHTML = k + exclude() + "</div></div>";
     $("#ingredients .ingredient").tooltip({
         bodyHandler: hover_ingredients,
         delay: 200
@@ -433,7 +433,7 @@ function find(a, b) {
 }
 
 function remove_item(a) {
-    __e.push(a);
+    __exclude.push(a);
     for (var b = 0, c = __matches.length; b < c; b++) void 0 !== __matches[b] && member(a, __matches[b][0]) && delete __matches[b];
     return refresh(!1)
 }
@@ -447,7 +447,7 @@ function remove_have(a) {
 }
 
 function remove_rare(a) {
-    for (var b = 0, c = __e.length; b < c; b++) a === __e[b] && __e.splice(b, 1)
+    for (var b = 0, c = __exclude.length; b < c; b++) a === __exclude[b] && __exclude.splice(b, 1)
 }
 
 function make(a) {
