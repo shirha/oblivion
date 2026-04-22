@@ -1,0 +1,60 @@
+<!doctype html>
+<head>
+    <title>Skyrim Alchemy Recipes Finder</title>
+    <meta name="description" content="Skyrim alchemy potion recipes. All ingredients to all possible recipes. Find the most profitable potions for skyrim easy money to earn money fast. All possible potions including the most expensive potions in the game. Skyrim Alchemy App android iphone windows. Generate recipes.  Potion Creator / Maker." />
+    <meta name="author" content="Jimmy Ruska">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="i/jquery-ui.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="i/jquery.tooltip.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="i/skyrim.css">
+</head>
+<body>
+    <div style="padding-left:50px;width: 1250px; margin: 0 auto;">
+        <h2>Skyrim Alchemy Recipes Finder</h2>
+        <p>Skyrim alchemy app gives all recipes based on what you have, sorted by most profitable!</p>
+    </div>
+    <div id="wrapper">
+        <div id="left" role="navigation">
+            <div id="added"></div> <br/>
+            <div id="listeffects" style="border:1px solid #ccc; padding:5px; width:230; visibility:hidden"></div>
+        </div>
+
+        <div id="right" role="main">
+                <label>Ingredient:</label>
+                <input id="autocomplete" class="ui-corner-all" style="background-color: #ffffff;padding:3" /> &emsp;
+                <input type="button" class="ui-corner-all" value=" Add" onclick="return add();" /> &emsp;
+                <input type="button" class="ui-corner-all" value=" Add All Ingredients" onclick="add_all();" /> <br/><br/>
+
+            <div id="warn" style="color:red;font-weight:bold"></div>
+            <div id="controls" style="visibility:hidden; display:inline;">
+                <form style="border: 1px solid #aaa; background-color: #efefef; padding:10px">
+                    <input type="checkbox" id="three"/>
+                    <label>3 Ingredient Recipes</label>&emsp;|&emsp;Max recipes to show:
+                    <input id="max_results" class="ui-corner-all" size="3" maxlength="5" value="40" />&nbsp;
+                    <input type="button" class="ui-corner-all" value=" Update" onclick="return refresh(true);" /> <br/>
+
+                    <select id="filter" style="margin:20px 0px 20px 0px">
+                        <option value="1" SELECTED="selected">Has</option>
+                        <option value="0">Not</option>
+                    </select>
+                    <select id="effects"></select>&emsp;
+                    <input type="button" class="ui-corner-all" value=" Add Filter" onclick="add_filter(); return refresh();" /> <br/>
+
+                    <input type="radio" id="any"      name="pure" CHECKED/><label>Any</label>&nbsp;
+                    <input type="radio" id="pure"     name="pure"/><label>Pure</label>&nbsp;
+                    <input type="radio" id="positive" name="pure"/><label>Pure Positive</label>&nbsp;
+                    <input type="radio" id="negative" name="pure"/><label>Pure Negative</label>
+                </form>
+            </div>
+            <div id="results"></div>
+        </div>
+    </div>
+    <script src="i/jquery.min.js"></script>
+    <script src="i/skyrim2.js"></script>
+    <script src="i/skyrim2_gen.js"></script>
+    <script src="i/jquery.tooltip.pack.js"></script>
+    <script src="i/jquery-ui.min.js"></script>
+</body>
+</html>
