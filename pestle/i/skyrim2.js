@@ -41,7 +41,7 @@ var __delete  = "i/delete.png",
     __filters = [],
     __matches = [], // 20350
     __have = [],
-    __exclude = [],
+    __e = [],
     __effects = [
         ["Cure Disease", 21, 1],
         ["Damage Health", 3, 0],
@@ -300,10 +300,10 @@ function refresh1(a) {
         d = $("#negative").prop("checked"),
         f = $("#three").prop("checked"),
         h = parseInt($("#max_results").val(), 10),
-        k = "<div id='ingredients' style='border:1px solid #ccc;padding-left:5px;width:260'><h4 style='margin:0;padding:0'>Your Ingredients: Icon Legend</h4><br/><img src='" + __delete + "'/> = I don't have this <br/><img src='" + __sadd + "'/> = Show recipes that have this<br/><img src='" + __sdelete + "'/> = Exclude recipes that have this<br/><hr/><div style='line-height:30px'>";
+        k = "<div id='ingredients' style='border:1px solid #ccc;padding-left:5px;width:260'><h4 style='margin:0;padding:0'>Your Ingredients: Icon Legend</h4><br/><img src='" + __delete + "'/> = I don't have this <br/><img src='" + __sadd + "'/> = Show recipes that have this<br/><img src='" + __sdelete + "'/> = e recipes that have this<br/><hr/><div style='line-height:30px'>";
     __have.sort(function(a, b) {return a - b});
     for (var e = 0, m = __have.length; e < m; e++) k += "<a href='#' onclick='__have.splice(" + e + ",1); return remove_item(" + __have[e] + ");'><img src='" + __delete + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",true)'><img src='" + __sadd + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",false)'><img src='" + __sdelete + "'/></a>&nbsp;&nbsp; <span class='ingredient' data-name='" + __have[e] + "'>" + upper_first(__rel_ingredient[__have[e]]) + "</span><br/>";
-    document.getElementById("added").innerHTML = k + exclude() + "</div></div>";
+    document.getElementById("added").innerHTML = k + e() + "</div></div>";
     $("#ingredients .ingredient").tooltip({
         bodyHandler: hover_ingredients,
         delay: 200
@@ -433,7 +433,7 @@ function find(a, b) {
 }
 
 function remove_item(a) {
-    __exclude.push(a);
+    __e.push(a);
     for (var b = 0, c = __matches.length; b < c; b++) void 0 !== __matches[b] && member(a, __matches[b][0]) && delete __matches[b];
     return refresh(!1)
 }
@@ -447,7 +447,7 @@ function remove_have(a) {
 }
 
 function remove_rare(a) {
-    for (var b = 0, c = __exclude.length; b < c; b++) a === __exclude[b] && __exclude.splice(b, 1)
+    for (var b = 0, c = __e.length; b < c; b++) a === __e[b] && __e.splice(b, 1)
 }
 
 function make(a) {
@@ -491,8 +491,8 @@ function add_item(a) { // refresh(true) rebuilds __matches after __have.push() (
 function delete_rare() {
 //  __exclude = [10, 17, 19, 27, 30, 44, 45, 53, 63, 79, 87, 91, 92];
 //         only: dmg mag regen, invisible, paralyze, slow
-//    __exclude = [0,2,3,4,5,6,7,9,10,11,13,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,35,36,37,38,40,41,42,43,44,45,48,49,51,53,54,55,56,59,60,61,62,63,64,65,67,68,70,71,72,73,74,75,76,77,79,81,82,83,84,85,87,88,89,90,91,92];
-    __exclude = [92]; // 0,2,3,4,5,6,7,9,10,11,13,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,35,36,37,38,40,41,42,43,44,45,48,49,51,53,54,55,56,59,60,61,62,63,64,65,67,68,70,71,72,73,74,75,76,77,79,81,82,83,84,85,87,88,89,90,91,92];
+    __exclude = [0,2,3,4,5,6,7,9,10,11,13,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,35,36,37,38,40,41,42,43,44,45,48,49,51,53,54,55,56,59,60,61,62,63,64,65,67,68,70,71,72,73,74,75,76,77,79,81,82,83,84,85,87,88,89,90,91,92];
+//    __exclude = [92]; // 0,2,3,4,5,6,7,9,10,11,13,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,35,36,37,38,40,41,42,43,44,45,48,49,51,53,54,55,56,59,60,61,62,63,64,65,67,68,70,71,72,73,74,75,76,77,79,81,82,83,84,85,87,88,89,90,91,92];
 
     for (i = 0; i < __exclude.length; i++) {
         remove_have(__exclude[i]);
