@@ -1,0 +1,125 @@
+<!doctype html>
+<head>
+    <title>Skyrim Alchemy Recipes Finder</title>
+    <meta name="description" content="Skyrim alchemy potion recipes. All ingredients to all possible recipes. Find the most profitable potions for skyrim easy money to earn money fast. All possible potions including the most expensive potions in the game. Skyrim Alchemy App android iphone windows. Generate recipes.  Potion Creator / Maker." />
+    <meta name="author" content="Jimmy Ruska">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="jquery-ui.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="jquery.tooltip.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="skyrim.css">
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        <div style="padding-left:50px;width: 1250px; margin: 0 auto;">
+            <br/>
+            <h2>Skyrim Alchemy Recipes Finder</h2>
+            <form id="foo" onSubmit="return add();">
+                <p>Skyrim alchemy app gives all recipes based on what you have, sorted by most profitable!
+                    <br/> Watch <a href="http://vimeo.com/33829282" target="_blank">the video</a> or click "Add All Ingredients".</p>
+
+                <label>Ingredient:</label>
+                <input class="ui-corner-all" id="autocomplete" style="background-color: #ffffff;padding:3" /> &emsp;
+                <input onclick="return add();" class="ui-corner-all" type="button" value=" Add" />&emsp;
+                <input type="button" class="ui-corner-all" value=" Add All Ingredients" 
+                    onclick="__have=[]; for (var i=0,len=__all.length;i<len;i++) __have.push(i); gen(); return refresh(false);" />
+               <!-- onclick="__have=[]; for (var i=0,len=__all.length;i<len;i++) __have.push(i);        return refresh(true);" /> -->
+                <br/><br/>
+            </form>
+        </div>
+    </header>
+    <br/>
+    <div id="wrapper">
+        <div id="left" role="navigation">
+            <br/><br/>
+            <div id="added"></div>
+            <br/><br/><br/><br/><br/><br/><br/>
+            <div id="listeffects" style='border:1px solid #ccc;padding:5px;width:230;visibility:hidden;'></div>
+        </div>
+        <div id="right" role="main">
+            <div id="warn" style="color:red;font-weight:bold"></div>
+            <div id="controls" style="visibility:hidden;display:inline;width:720px">
+                <form style="border: 1px dashed #888; background-color: #efefef; padding:10px">
+                    <input id="three" type="checkbox" class="ui-corner-all check" CHECKED/>
+                    <label>3 Ingredient Recipes</label> | Max recipes to show:
+                    <input id='max_results' size='3' maxlength='5' value='50' class="ui-corner-all" />&nbsp;
+                    <input type='button' value=" Update" onclick="return refresh(true);" class="ui-corner-all" />
+                    <br/>
+                    <select id='filter' style="margin:20px 0px 20px 0px">
+                        <option value='1' SELECTED='selected'>Has</option>
+                        <option value='0'>Not</option>
+                    </select>
+                    <select id='effects'>
+                        <option value='0'>Cure Disease</option>
+                        <option value='1'>Damage Health</option>
+                        <option value='2'>Damage Magicka</option>
+                        <option value='3'>Damage Magicka Regen</option>
+                        <option value='4'>Damage Stamina</option>
+                        <option value='5'>Damage Stamina Regen</option>
+                        <option value='6'>Fear</option>
+                        <option value='7'>Fortify Alteration</option>
+                        <option value='8'>Fortify Barter</option>
+                        <option value='9'>Fortify Block</option>
+                        <option value='10'>Fortify Carry Weight</option>
+                        <option value='11'>Fortify Conjuration</option>
+                        <option value='12'>Fortify Destruction</option>
+                        <option value='13'>Fortify Enchanting</option>
+                        <option value='14'>Fortify Health</option>
+                        <option value='15'>Fortify Heavy Armor</option>
+                        <option value='16'>Fortify Illusion</option>
+                        <option value='17'>Fortify Light Armor</option>
+                        <option value='18'>Fortify Lockpicking</option>
+                        <option value='19'>Fortify Magicka</option>
+                        <option value='20'>Fortify Marksman</option>
+                        <option value='21'>Fortify One Handed</option>
+                        <option value='22'>Fortify Pickpocket</option>
+                        <option value='23'>Fortify Restoration</option>
+                        <option value='24'>Fortify Smithing</option>
+                        <option value='25'>Fortify Sneak</option>
+                        <option value='26'>Fortify Stamina</option>
+                        <option value='27'>Fortify Two Handed</option>
+                        <option value='28'>Frenzy</option>
+                        <option value='29'>Invisibility</option>
+                        <option value='30'>Lingering Damage Health</option>
+                        <option value='31'>Lingering Damage Magicka</option>
+                        <option value='32'>Lingering Damage Stamina</option>
+                        <option value='33'>Paralysis</option>
+                        <option value='34'>Ravage Health</option>
+                        <option value='35'>Ravage Magicka</option>
+                        <option value='36'>Ravage Stamina</option>
+                        <option value='37'>Regenerate Health</option>
+                        <option value='38'>Regenerate Magicka</option>
+                        <option value='39'>Regenerate Stamina</option>
+                        <option value='40'>Resist Fire</option>
+                        <option value='41'>Resist Frost</option>
+                        <option value='42'>Resist Magic</option>
+                        <option value='43'>Resist Poison</option>
+                        <option value='44'>Resist Shock</option>
+                        <option value='45'>Restore Health</option>
+                        <option value='46'>Restore Magicka</option>
+                        <option value='47'>Restore Stamina</option>
+                        <option value='48'>Slow</option>
+                        <option value='49'>Waterbreathing</option>
+                        <option value='50'>Weakness to Fire</option>
+                        <option value='51'>Weakness to Frost</option>
+                        <option value='52'>Weakness to Magic</option>
+                        <option value='53'>Weakness to Poison</option>
+                        <option value='54'>Weakness to Shock</option>
+                    </select>&emsp;
+                    <input type='button' value=' Add Filter' onclick='add_filter(); return refresh();' class="ui-corner-all" />
+                    <br/>
+                    <form id="purity"><span class='check'><input type='radio' class="check ui-corner-all" name='pure' CHECKED/> <label>Any</label></span> <span class='check'><input id='pure' type='radio' class='check' name='pure' /> <label>Pure</label></span> <span class='check'><input id='positive' type='radio' class='check' name='pure' /> <label>Pure Positive</label></span> <span class='check'><input id='negative' type='radio' class='check' name='pure'/> <label>Pure Negative</label></span></form>
+            </div>
+            <div id="results"></div>
+        </div>
+    </div>
+    <script src='jquery.min.js'></script>
+    <script src="skyrim_beautifier.js"></script>
+    <script src="jquery.tooltip.pack.js"></script>
+    <script src="jquery-ui.min.js"></script>
+</body>
+
+</html>

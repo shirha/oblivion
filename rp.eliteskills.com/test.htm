@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+body{padding:1em;font-family:tahoma}
+h1{font-weight:bold}
+a{line-height:3em; font-style:italic}
+</style>
+      <script type='text/javascript' src="http://www.broofa.com/Tools/JSLitmus/JSLitmus.js"></script>
+      <script type='text/javascript' src="http://underscorejs.org/underscore-min.js"></script>
+<body>
+<h1>Time comparation of Intersection Methods</h1>
+<a href="http://www.broofa.com/Tools/JSLitmus/">banchmark url reference</a><br>
+<script>
+
+mainList = [-11, -1, 1, 2, 3, 4, 5, 6, 20, 44, 87, 99, 100];
+toSearchList = [-1, 0, 1, 4,99];
+
+// console.log(_.intersection(                                        [0, 1, 9,99],[-1, 1, 3, 8]));
+// console.log(_.intersection([1, 2, 3, 4, 5, 6, 20, 44, 87, 99, 100],             [-1, 1, 3, 8]));
+// console.log(_.intersection([1, 2, 3, 4, 5, 6, 20, 44, 87, 99, 100],[0, 1, 9,99]              ));
+
+function SimpleFilterX(arrays){
+var result = arrays.shift().filter(function(v) {
+    return arrays.every(function(a) {
+        return a.indexOf(v) !== -1;
+    });
+});
+}
+
+function SimpleFilter(x, y){
+	return x.filter(function(v) {
+		return y.indexOf(v) !== -1
+	});
+}
+//console.log( SimpleFilter(toSearchList, mainList) );
+
+function SimpleJsLoops(x, y){
+    var ret = [];
+    for (var i = 0; i < x.length; i++) {
+        for (var z = 0; z < y.length; z++) {
+            if (x[i] === y[z]) {
+//console.log(i);
+                ret.push(x[i]);
+                break;
+            }
+        }
+    }
+    return ret;            
+}
+
+function intersection(x, y) {
+        // x.sort();
+        // y.sort();
+        var i = j = 0;
+        var ret = [];
+        while (i < x.length && j < y.length) {
+            if (x[i] < y[j]) i++;
+            else if (y[j] < x[i]) j++;
+            else {
+                ret.push(x[i]);
+                i++, j++;
+            }
+        }
+        return ret;
+}
+
+function intersect_safe(a, b)
+{
+  var ai = bi= 0;
+  var result = [];
+
+  while( ai < a.length && bi < b.length ){
+  	// console.log(a[ai],b[bi],a[ai] === b[bi]);
+     if      (a[ai] < b[bi] ){ ai++; }
+     else if (a[ai] > b[bi] ){ bi++; }
+     else /* they're equal */
+     {
+       result.push(a[ai]);
+  	// console.log('push '+result);
+       ai++;
+       bi++;
+     }
+  }
+
+  return result;
+}
+
+var arrayContains = Array.prototype.indexOf ?
+    function(arr, val) {
+        return arr.indexOf(val) > -1;
+    } :
+    function(arr, val) {
+        var i = arr.length;
+        while (i--) {
+            if (arr[i] === val) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+function arrayIntersection() {
+    var val, arrayCount, firstArray, i, j, intersection = [], missing;
+    var arrays = Array.prototype.slice.call(arguments); 
+    firstArr = arrays.pop();
+    if (firstArr) {
+        j = firstArr.length;
+        arrayCount = arrays.length;
+        while (j--) {
+            val = firstArr[j];
+            missing = false;
+            i = arrayCount;
+            idx = null;
+            while (!missing && i--) {
+                idx = arrays[i].indexOf(val);
+                if ( !arrayContains(arrays[i], val) ) {
+                    missing = true;
+                }
+            }
+            if (!missing) {
+                intersection.push(val);
+            }
+        }
+    }
+    return intersection;
+}
+
+function intersect(array1, array2) {
+   var result = [];
+   // Don't destroy the original arrays
+   var a = array1.slice(0);
+   var b = array2.slice(0);
+   var aLast = a.length - 1;
+   var bLast = b.length - 1;
+   while (aLast >= 0 && bLast >= 0) {
+      if (a[aLast] > b[bLast] ) {
+         a.pop();
+         aLast--;
+      } else if (a[aLast] < b[bLast] ){
+         b.pop();
+         bLast--;
+      } else /* they're equal */ {
+         result.push(a.pop());
+         b.pop();
+         aLast--;
+         bLast--;
+      }
+   }
+   return result;
+}
+
+///////////////////////////////////////////////////////////////////////////
+//test the functions, to see that they return correct results
+/////////////////////////////////////////////////////////////////
+
+document.write(SimpleJsLoops(toSearchList, mainList)+'&emsp;Simple js loops<br>');
+document.write(intersection(toSearchList, mainList)+'&emsp;intersection<br>');
+document.write(intersect_safe(toSearchList, mainList)+'&emsp;intersect_safe<br>');
+document.write(arrayIntersection(toSearchList, mainList)+'&emsp;all the way down<br>');
+document.write(intersect(toSearchList, mainList)+'&emsp;intersect<br>');
+document.write(_.intersection(toSearchList, mainList)+'&emsp;_underscore<br>');
+document.write(SimpleFilter(toSearchList, mainList)+'&emsp;Simple filter<br><br>');
+
+///////////////////////////////////////////////////////////////////////////
+//Banchmark the functions.
+/////////////////////////////
+JSLitmus.test('Simple js loops', function () { SimpleJsLoops(toSearchList, mainList) });
+JSLitmus.test('intersection', function () {intersection(toSearchList, mainList); });
+JSLitmus.test('intersect_safe', function () {intersect_safe(toSearchList, mainList); });
+JSLitmus.test('all the way down', function () {arrayIntersection(toSearchList, mainList); });
+JSLitmus.test('intersect', function () {intersect(toSearchList, mainList); });
+JSLitmus.test('_underscore', function () {_.intersection(toSearchList, mainList); });
+JSLitmus.test('Simple filter', function () {SimpleFilter(toSearchList, mainList); });
+
+</script>
+
+</body>
+</html>

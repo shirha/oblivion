@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+# van1.pl
+  use strict;
+  use warnings;
+  use File::Slurp;
+  use Data::Dumper;
+
+    write_file "matches_sorted_20350.txt", 
+      sort { my @a = $a =~ /(\d+)/g;
+             my @b = $b =~ /(\d+)/g;
+             $b[-1] <=> $a[-1] || $a[0] <=> $b[0] || $a[1] <=> $b[1] || $a[2] <=> $b[2];
+           } read_file "matches_20350.txt";

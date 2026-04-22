@@ -1,0 +1,166 @@
+﻿<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+<title>Skyrim Alchemy Recipes Finder</title>
+<meta name="description" content="Skyrim alchemy potion recipes. All ingredients to all possible recipes. Find the most profitable potions for skyrim easy money to earn money fast. All possible potions including the most expensive potions in the game. Skyrim Alchemy App android iphone windows. Generate recipes.  Potion Creator / Maker." />
+  <meta name="author" content="Jimmy Ruska">
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+
+  <!-- Mobile viewport optimized: h5bp.com/viewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/blitzer/jquery-ui.css" type="text/css" media="all" />
+   <link rel="stylesheet" href="jquery.tooltip.css" type="text/css" media="all" />  
+   <link rel="stylesheet" href="skyrim.css?6">
+  <style>
+</style>
+
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+</head>
+
+<body>
+  <header>
+   <div style="padding-left:50px;width: 1250px; margin: 0 auto;">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5069924524771176";
+/* skyrim alchemy */
+google_ad_slot = "6998562396";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script><br/>
+
+   <h2>Skyrim Alchemy Recipes Finder</h2>
+<form id="foo" onSubmit="return add();">
+  <p>Skyrim alchemy app gives all recipes based on what you have, sorted by most profitable!<br/> Watch <a href="http://vimeo.com/33829282" target="_blank">the video</a> or click "Add All Ingredients".</p>
+
+  <label>Ingredient:</label> <input class="ui-corner-all"
+  id="autocomplete" style="background-color: #ffffff;padding:3" />
+  &emsp; <input onclick="return add();" class="ui-corner-all"
+  type="button" value=" Add"/>&emsp; <input type="button" class="ui-corner-all" value=" Add All Ingredients" onclick="__have=[]; for (var i=0,len=__all.length;i<len;i++) __have.push(i); gen(); return refresh(false);"/><br/><br/>
+</form></div>
+  </header>
+
+
+<br/>
+<div id="wrapper">
+
+
+<div id="left" role="navigation">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-5069924524771176";
+/* skyrim_left */
+google_ad_slot = "4690930551";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br/>
+List of <a href="skyrim_tricks_and_tips.html" target="_blank">Skyrim Tips and Tricks</a><br/><br/>
+<div id="added"></div>
+<br/><br/>
+
+Created by <a href="http://www.jimmyr.com/" target="_blank">Jimmy Ruska</a>.<br/>
+<a href="http://rp.eliteskills.com/" target="_blank">Skyrim Roleplay</a><br/>
+<a href="http://www.trainear.com/" target="_blank">Ear Training</a><br/>
+
+Some data from <a href="http://www.uesp.net/wiki/Skyrim:Ingredients" target="_blank">UESP</a>.<br/>
+<g:plusone size="small"></g:plusone><br/>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=28007078732";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<div class="fb-like" data-href="http://rp.eliteskills.com/skyrim.html" data-send="true" data-layout="button_count" data-width="270" data-show-faces="false"></div>
+<br/><br/>
+<div id="listeffects" style='border:1px solid #ccc;padding:5px;width:230;visibility:hidden;'></div>
+</div>
+
+
+
+
+<div id="right" role="main">
+      <div id="vid"><h3>Video Tutorial on using Alchemy App</h3><iframe src="http://player.vimeo.com/video/33829282?title=0&amp;byline=0&amp;portrait=0" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>
+<div id="warn" style="color:red;font-weight:bold"></div>
+<div id="controls" style="visibility:hidden;display:inline;width:720px">
+      <form style="border: 1px dashed #888; background-color: #efefef; padding:10px"><input id="three" type="checkbox" class="ui-corner-all check" CHECKED/> <label>3 Ingredient Recipes</label> | Max recipes to show: <input id='max_results' size='3' maxlength='5' value='50' class="ui-corner-all"/>&nbsp; <input type='button' value=" Update" onclick="return refresh(true);" class="ui-corner-all"/><br/>
+      <select id='filter' style="margin:20px 0px 20px 0px"><option value='1' SELECTED='selected'>Has</option><option value='0'>Not</option></select> <select id='effects'><option value='0'>Cure Disease</option><option value='1'>Damage Health</option><option value='2'>Damage Magicka</option><option value='3'>Damage Magicka Regen</option><option value='4'>Damage Stamina</option><option value='5'>Damage Stamina Regen</option><option value='6'>Fear</option><option value='7'>Fortify Alteration</option><option value='8'>Fortify Barter</option><option value='9'>Fortify Block</option><option value='10'>Fortify Carry Weight</option><option value='11'>Fortify Conjuration</option><option value='12'>Fortify Destruction</option><option value='13'>Fortify Enchanting</option><option value='14'>Fortify Health</option><option value='15'>Fortify Heavy Armor</option><option value='16'>Fortify Illusion</option><option value='17'>Fortify Light Armor</option><option value='18'>Fortify Lockpicking</option><option value='19'>Fortify Magicka</option><option value='20'>Fortify Marksman</option><option value='21'>Fortify One Handed</option><option value='22'>Fortify Pickpocket</option><option value='23'>Fortify Restoration</option><option value='24'>Fortify Smithing</option><option value='25'>Fortify Sneak</option><option value='26'>Fortify Stamina</option><option value='27'>Fortify Two Handed</option><option value='28'>Frenzy</option><option value='29'>Invisibility</option><option value='30'>Lingering Damage Health</option><option value='31'>Lingering Damage Magicka</option><option value='32'>Lingering Damage Stamina</option><option value='33'>Paralysis</option><option value='34'>Ravage Health</option><option value='35'>Ravage Magicka</option><option value='36'>Ravage Stamina</option><option value='37'>Regenerate Health</option><option value='38'>Regenerate Magicka</option><option value='39'>Regenerate Stamina</option><option value='40'>Resist Fire</option><option value='41'>Resist Frost</option><option value='42'>Resist Magic</option><option value='43'>Resist Poison</option><option value='44'>Resist Shock</option><option value='45'>Restore Health</option><option value='46'>Restore Magicka</option><option value='47'>Restore Stamina</option><option value='48'>Slow</option><option value='49'>Waterbreathing</option><option value='50'>Weakness to Fire</option><option value='51'>Weakness to Frost</option><option value='52'>Weakness to Magic</option><option value='53'>Weakness to Poison</option><option value='54'>Weakness to Shock</option></select>&emsp; <input type='button' value=' Add Filter' onclick='add_filter(); return refresh();' class="ui-corner-all"/><br/>
+
+<form id="purity"><span class='check'><input type='radio' class="check ui-corner-all" name='pure' CHECKED/> <label>Any</label></span> <span class='check'><input id='pure' type='radio' class='check' name='pure' /> <label>Pure</label></span>  <span class='check'><input id='positive' type='radio' class='check' name='pure' /> <label>Pure Positive</label></span> <span class='check'><input id='negative' type='radio' class='check' name='pure'/> <label>Pure Negative</label></span></form></div>
+  <div id="results"></div>
+</div>
+
+<!-- <footer>x</footer> -->
+
+
+
+
+  </div>
+
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+
+  <!-- scripts concatenated and minified via build script -->
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+<script src="skyrim_.js?31"></script>
+<script src="jquery.tooltip.pack.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+
+  <!-- end scripts -->
+
+
+  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+       mathiasbynens.be/notes/async-analytics-snippet -->
+  <script>
+    var _gaq=[['_setAccount','UA-380654-9'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script defer src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script defer>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+
+</body>
+</html>
+
+
