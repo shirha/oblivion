@@ -392,7 +392,7 @@ $(document).ready(function() {
     build_effects();
 
     // Optional: Auto-apply last used list on page load
-    // add_all();     // Uncomment this line if you want it to automatically load on refresh
+    add_all();     // Uncomment this line if you want it to automatically load on refresh
 });
 
 function add_filter() {
