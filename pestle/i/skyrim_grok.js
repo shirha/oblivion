@@ -220,6 +220,7 @@ function saveNamedLists() {
 function loadNamedLists() {
     const saved = localStorage.getItem('namedExcludeLists');
     if (saved) {
+        console.log(saved,'length=',Object.keys(saved).length)
         namedExcludeLists = JSON.parse(saved);
     } else {
         namedExcludeLists["Default Rare Ingredients"] = [...DEFAULT_EXCLUDE];
@@ -393,6 +394,8 @@ $(document).ready(function() {
 
     // Optional: Auto-apply last used list on page load
     add_all();     // Uncomment this line if you want it to automatically load on refresh
+    __all.forEach((e,i)=>console.log(i,JSON.stringify(e)))
+
 });
 
 function add_filter() {
