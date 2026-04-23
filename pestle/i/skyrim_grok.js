@@ -217,17 +217,6 @@ function saveNamedLists() {
     localStorage.setItem('namedExcludeLists', JSON.stringify(namedExcludeLists));
 }
 
-// function loadNamedLists() {
-//     const saved = localStorage.getItem('namedExcludeLists');
-//     if (saved) {
-//         console.log(saved,'length=',Object.keys(saved).length)
-//         namedExcludeLists = JSON.parse(saved);
-//     } else {
-//         namedExcludeLists["Default Rare Ingredients"] = [...DEFAULT_EXCLUDE];
-//         saveNamedLists();
-//     }
-// }
-
 function loadNamedLists() {
     const saved = localStorage.getItem('namedExcludeLists');
     if (saved) {
@@ -347,19 +336,6 @@ function addCurrentToNamedList() {
         closeManageDialog();
     }
 }
-
-// function clearAllNamedLists() {
-//     if (confirm('Delete ALL saved exclude lists?')) {
-//         namedExcludeLists = {};
-//         localStorage.removeItem('namedExcludeLists');
-//         localStorage.removeItem('lastUsedExcludeList');
-//         currentListName = "Default Rare Ingredients"; // null;
-
-//         namedExcludeLists["Default Rare Ingredients"] = [...DEFAULT_EXCLUDE];
-//         saveNamedLists();
-//         renderNamedLists();
-//     }
-// }
 
 function clearAllNamedLists() {
     if (confirm('Delete ALL saved exclude lists?')) {
