@@ -525,7 +525,7 @@ console.log('refresh1=',a);
 
                 if (!(b && !1 === i) && !(c && 1 !== i) && !(d && 0 !== i)) {
                     if (h === k++) {
-                        a += "<div style='color:red'>Limiting to " + h + " recipes. Add filters for better performance.</div>";
+                        a += "<div style='color:black;'>Limiting to " + h + " recipes. Add filters for better performance.</div>";
                         break;
                     }
 
