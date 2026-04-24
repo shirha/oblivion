@@ -228,6 +228,7 @@ function loadNamedLists() {
     // === Always ensure Default exists ===
     if (!namedExcludeLists["Default Rare Ingredients"]) {
         namedExcludeLists["Default Rare Ingredients"] = [...DEFAULT_EXCLUDE];
+        namedExcludeLists["Most All Ingredients"] = [17,19,44,45,63,91,92];
         saveNamedLists();
     }
 }
