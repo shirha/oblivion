@@ -206,6 +206,7 @@ function each_index(a, b) {
 }
 
 // ==================== NAMED EXCLUDE LISTS SYSTEM ====================
+var effs_checked = false; 
 
 let namedExcludeLists = {};
 let currentListName = null;
@@ -374,6 +375,14 @@ function add_all() {
 $(document).ready(function() {
     loadNamedLists();                    // ← New
 
+    $('#eff').change(function() { 
+        // alert('hi!')
+        effs_checked = this.checked; 
+        $("#listeffects").css("visibility", effs_checked ? "visible" : "hidden");
+        console.log("effs_checked=",effs_checked);
+        refresh(!1);
+    });
+
     // Your original code
     $("#autocomplete").autocomplete({
         source: map(function(a) { return a[0] }, __all),
@@ -421,9 +430,9 @@ function add_item_filter(a, b) {
 }
 
 function build_effects() {
-    for (var a = "", b = 0, c = __effects.length; b < c; b++) var d = __effects[b],
-        a = a + ("<span class='effect' data-id='" + b + "' style='font-weight:bold;color:" + (1 === d[2] ? "green" : "red") + "'>" + d[0] + " ($" + d[1] + ")</span><br/>");
-//    $("#listeffects").html(a);
+    for (var a = "", b = 0, c = __effects.length; b < c; b++) var d = __effects[b], // font-weight:bold;
+        a = a + ("<span class='effect' data-id='" + b + "' style='color:" + (1 === d[2] ? "green" : "red") + "'>" + d[0] + " ($" + d[1] + ")</span><br/>");
+    $("#listeffects").html(a);
     $(".effect").tooltip({
         bodyHandler: hover_effect,
         delay: 200
@@ -443,7 +452,7 @@ function hover_ingredients() {
         e = h[1],
         h = h[2],
         c = c + e,
-        b = b + ("<span style='font-weight:bold;color:" + (1 === h ? "green" : "red") + "'>" + k + " ($" + e + ")</span><br/>");
+        b = b + ("<span style='color:" + (1 === h ? "green" : "red") + "'>" + k + " ($" + e + ")</span><br/>"); // font-weight:bold;
     return b = b + ("<br/><b>Combined Worth:</b> $" + c + "<br/>") + ("<b>Average Worth:</b> $" + Math.round(c / 4))
 }
 
@@ -470,6 +479,19 @@ function refresh(a) {
     return !1
 }
 
+function effs(e) {
+    if(!effs_checked) return "";
+    list = '';
+    console.log(e);
+    e.forEach((x,i)=>{
+        ename = __effects[x][0];
+        ecolr = __effects[x][2] ? "g_eff" : "r_eff";
+        list += `<span class=${ecolr}>${ename}</span><br/>`;
+    });
+
+    return list;
+}
+
 function refresh1(a) { 
     var b = $("#pure").prop("checked"),
         c = $("#positive").prop("checked"),
@@ -478,7 +500,7 @@ function refresh1(a) {
         h = parseInt($("#max_results").val(), 10),
         k = "<div id='ingredients' style='border:1px solid #ccc;padding-left:5px;width:260'><h4 style='margin:0;padding:0'>Your Ingredients: Icon Legend</h4><br/><img src='" + __delete + "'/> = I don't have this <br/><img src='" + __sadd + "'/> = Show recipes that have this<br/><img src='" + __sdelete + "'/> = Exclude recipes that have this<br/><hr/><div style='line-height:30px'>";
     __have.sort(function(a, b) {return a - b});
-    for (var e = 0, m = __have.length; e < m; e++) k += "<a href='#' onclick='__have.splice(" + e + ",1); return remove_item(" + __have[e] + ");'><img src='" + __delete + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",true)'><img src='" + __sadd + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",false)'><img src='" + __sdelete + "'/></a>&nbsp;&nbsp; <span class='ingredient' data-name='" + __have[e] + "'>" + upper_first(__rel_ingredient[__have[e]]) + "</span><br/>";
+    for (var e = 0, m = __have.length; e < m; e++) k += "<a href='#' onclick='__have.splice(" + e + ",1); return remove_item(" + __have[e] + ");'><img src='" + __delete + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",true)'><img src='" + __sadd + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",false)'><img src='" + __sdelete + "'/></a>&nbsp;&nbsp; <span class='ingredient' data-name='" + __have[e] + "'>" + upper_first(__rel_ingredient[__have[e]]) + "</span><br/>" + effs(__all[__have[e]][1]);
     document.getElementById("added").innerHTML = k + exclude() + "</div></div>";
     $("#ingredients .ingredient").tooltip({
         bodyHandler: hover_ingredients,
@@ -518,7 +540,7 @@ console.log('refresh1=',a);
                 for (var o = 0, p = n.length; o < p; o++) {
                     var r = __effects[n[o]];
                     null === i ? i = r[2] : !1 !== i && i !== r[2] && (i = !1);
-                    l += "<span class='effect' data-id='" + n[o] + "' style='font-weight:bold;color:" 
+                    l += "<span class='effect' data-id='" + n[o] + "' style='color:" // font-weight:bold;
                        + (1 === r[2] ? "green" : "red") + "'>" 
                        + r[0] + "</span><br/>";
                 }
@@ -546,7 +568,7 @@ console.log('refresh1=',a);
 
                     a += `
 <div style="margin: 4px 0; padding: 8px; border: 1px solid #aaa; background-color: white; max-width: 282px; font-size: 12pt;">
-    <div style="font-size: 16px; font-weight: bold; margin-bottom: 0;">$${profit}</div>
+    <div style="color:gray; font-size: 16px; font-weight: bold; margin-bottom: 0;">$${profit}</div>
     
     <div style="margin-bottom: 0;">
         <span data-name="${g[0]}" class="ingredient">${__rel_ingredient[g[0]]}</span>
@@ -716,7 +738,7 @@ function exclude() {
     var e = "<hr/><h4 style='margin:0;padding:0'>Rare Ingredients Excluded</h4>";
     for (i = 0; i < __exclude.length; i++)
         e += '<a href="#" onclick="add_item('+ __exclude[i] +'); return false;" ><img src="'+ __additem +'"/></a>&nbsp;&nbsp;' +
-             '<span class="ingredient" data-name="' + __exclude[i] + '">' + upper_first(__rel_ingredient[__exclude[i]]) +  '</span><br/>';
+             '<span class="ingredient" data-name="' + __exclude[i] + '">' + upper_first(__rel_ingredient[__exclude[i]]) +  '</span><br/>' + effs(__all[__exclude[i]][1]);
     return e
 }
 
