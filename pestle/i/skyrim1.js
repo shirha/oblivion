@@ -378,9 +378,9 @@ $(document).ready(function() {
     $('#eff').change(function() { 
         // alert('hi!')
         effs_checked = this.checked; 
-        $("#listeffects").css("visibility", effs_checked ? "visible" : "hidden");
-        console.log("effs_checked=",effs_checked);
+        // $("#listeffects").css("visibility", effs_checked ? "visible" : "hidden");
         refresh(!1);
+        console.log("effs_checked=",effs_checked);
     });
 
     // Your original code
@@ -429,19 +429,79 @@ function add_item_filter(a, b) {
     return refresh(!1)
 }
 
+// function build_effects() {
+//     for (var a = "", b = 0, c = __effects.length; b < c; b++) var d = __effects[b], // font-weight:bold;
+//         a = a + ("<span class='effect' data-id='" + b + "' style='color:" + (1 === d[2] ? "green" : "red") + "'>" + d[0] + " ($" + d[1] + ")</span><br/>");
+//     $("#listeffects").html(a);
+//     $(".effect").tooltip({
+//         bodyHandler: hover_effect,
+//         delay: 200
+//     })
+// }
+
 function build_effects() {
-    for (var a = "", b = 0, c = __effects.length; b < c; b++) var d = __effects[b], // font-weight:bold;
-        a = a + ("<span class='effect' data-id='" + b + "' style='color:" + (1 === d[2] ? "green" : "red") + "'>" + d[0] + " ($" + d[1] + ")</span><br/>");
+    var a = "";
+    for (var b = 0, c = __effects.length; b < c; b++) {
+        var d = __effects[b];
+        a += "<span class='effect' data-id='" + b + "' style='color:" + 
+             (1 === d[2] ? "green" : "red") + "'>" + 
+             d[0] + " ($" + d[1] + ")</span><br/>";
+    }
+    
     $("#listeffects").html(a);
-    $(".effect").tooltip({
-        bodyHandler: hover_effect,
-        delay: 200
-    })
+    
+    // Remove old tooltip
+    // $(".effect").off("click");   // clear any previous handlers
+    
+    // Add click handler for modal
+    // $(".effect").on("click", showEffectDialog);
 }
 
 function hover_effect() {
     for (var a = parseInt($(this).attr("data-id"), 10), b = "<b>Effect Worth:</b> " + __rel_worth[a] + "<br/><b>Ingredients With Effect:</b><br/>", c = [], d = 0, f = __all.length; d < f; d++) member(a, __rel_effect_list[d]) && c.push(__rel_ingredient[d]);
     return b += c.sort().join("<br/>")
+}
+
+function showEffectDialog() {
+    var id = parseInt($(this).attr("data-id"), 10);
+    var effectName = $(this).text();
+
+    // Build the content
+    var content = "<b>Effect Worth:</b> " + __rel_worth[id] + "<br/><br/>" +
+                  "<b>Ingredients With Effect:</b><br/>";
+
+    var ingredients = [];
+    for (var d = 0, f = __all.length; d < f; d++) {
+        if (member(id, __rel_effect_list[d])) {
+            ingredients.push(__rel_ingredient[d]);
+        }
+    }
+    content += ingredients.sort().join("<br/>");
+
+    // Create the dialog
+    var $dialog = $("<div></div>").html(content).dialog({
+        title: effectName,
+        modal: true,
+        width: 480,
+        resizable: false,
+        buttons: {
+            "Close": function() {
+                $(this).dialog("close");
+            }
+        },
+        // Cleanup when dialog is closed
+        close: function() {
+            // Remove the click handler from the overlay
+            $(".ui-widget-overlay").off("click.closeDialog");
+            // Remove the dialog from DOM
+            $(this).remove();
+        }
+    });
+
+    // Enable click outside to close
+    $(".ui-widget-overlay").on("click.closeDialog", function() {
+        $dialog.dialog("close");
+    });
 }
 
 function hover_ingredients() {
@@ -486,7 +546,7 @@ function effs(e) {
     e.forEach((x,i)=>{
         ename = __effects[x][0];
         ecolr = __effects[x][2] ? "g_eff" : "r_eff";
-        list += `<span class=${ecolr}>${ename}</span><br/>`;
+        list += `<span class="effect ${ecolr}" data-id="${x}">${ename}</span><br/>`;
     });
 
     return list;
@@ -597,6 +657,10 @@ console.log('refresh1=',a);
 
     $("#warn").html("");
     $("#controls").css("visibility", "visible");
+
+    $(".effect").off("click", showEffectDialog);   // Only remove this specific function
+    $(".effect").on("click", showEffectDialog);
+
     setTimeout("add_hover_effects()", 20);
     return !1
 }
