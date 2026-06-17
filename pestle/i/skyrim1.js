@@ -465,6 +465,7 @@ function hover_effect() {
 function showEffectDialog() {
     var id = parseInt($(this).attr("data-id"), 10);
     var effectName = $(this).text();
+    var isPositive = $(this).css('color') === 'rgb(0, 128, 0)'; // green
 
     // Build the content
     var content = "<b>Effect Worth:</b> " + __rel_worth[id] + "<br/><br/>" +
@@ -482,7 +483,7 @@ function showEffectDialog() {
     var $dialog = $("<div></div>").html(content).dialog({
         title: effectName,
         modal: true,
-        width: 480,
+        width: 300,
         resizable: false,
         buttons: {
             "Close": function() {
@@ -497,6 +498,11 @@ function showEffectDialog() {
             $(this).remove();
         }
     });
+
+    // === Set dialog title color ===
+    $dialog.dialog("widget")                // Gets the whole dialog container
+            .find(".ui-dialog-titlebar")       // Finds the title element
+            .css("background-color", isPositive ? "green" : "red");
 
     // Enable click outside to close
     $(".ui-widget-overlay").on("click.closeDialog", function() {
@@ -562,10 +568,10 @@ function refresh1(a) {
     __have.sort(function(a, b) {return a - b});
     for (var e = 0, m = __have.length; e < m; e++) k += "<a href='#' onclick='__have.splice(" + e + ",1); return remove_item(" + __have[e] + ");'><img src='" + __delete + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",true)'><img src='" + __sadd + "'/></a>&nbsp;&nbsp; <a href='#' onclick='return add_item_filter(" + __have[e] + ",false)'><img src='" + __sdelete + "'/></a>&nbsp;&nbsp; <span class='ingredient' data-name='" + __have[e] + "'>" + upper_first(__rel_ingredient[__have[e]]) + "</span><br/>" + effs(__all[__have[e]][1]);
     document.getElementById("added").innerHTML = k + exclude() + "</div></div>";
-    $("#ingredients .ingredient").tooltip({
-        bodyHandler: hover_ingredients,
-        delay: 200
-    });
+    // $("#ingredients .ingredient").tooltip({
+    //     bodyHandler: hover_ingredients,
+    //     delay: 200
+    // });
     if (0 === __have.length) return document.getElementById("results").innerHTML = "<br/>No ingredients selected.", $("#controls").css("visibility", "hidden"), $("#warn").html(""), !1;
 ///////////////////////////////////////////
     a && (__matches = find_matches2());
@@ -661,7 +667,7 @@ console.log('refresh1=',a);
     $(".effect").off("click", showEffectDialog);   // Only remove this specific function
     $(".effect").on("click", showEffectDialog);
 
-    setTimeout("add_hover_effects()", 20);
+    // setTimeout("add_hover_effects()", 20);
     return !1
 }
 
