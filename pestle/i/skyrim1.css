@@ -34,6 +34,9 @@
  html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
  body { margin: 0; font-size: 1em; line-height: 1.4; }
+ img { height: 24px; width: auto; }
+ .g_eff { margin-left:60px; color:green; }
+ .r_eff { margin-left:60px; color:red; }
 
  body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
@@ -114,7 +117,7 @@
  */
 
  img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
-
+ 
 /*
  * Correct overflow not hidden in IE9
  */
@@ -287,7 +290,8 @@
   }
 
   #results{width:800px;}
-  img{border:0;outline:0;}
+  img {border:0;outline:0;}
+
   table{    
     border: 1px solid #aaa;
     color: #000;
@@ -305,3 +309,4 @@
   #left{float:left;width:300px; }
   #right{float:left;width:300px; margin-left: 30px; }
   #wrapper{padding-left:50px;width:1250px;margin: 0 auto; }
+  #effs {float:right; display: inline-block;}
