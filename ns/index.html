@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nordic Souls Recipes</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      gap: 20px;
+    }
+
+    .filters {
+      width: 250px;
+    }
+
+    .recipes {
+      flex: 1;
+    }
+
+    .chip {
+      display: inline-block;
+      padding: 4px 8px;
+      margin: 2px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .chip.active {
+      background: #333;
+      color: white;
+    }
+
+    .recipe {
+      margin-bottom: 12px;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="filters">
+    <h3>Ingredients</h3>
+    <div id="ingredientFilters"></div>
+
+    <h3>Effects</h3>
+    <div id="effectFilters"></div>
+  </div>
+
+  <div class="recipes">
+    <h2>Recipes</h2>
+    <div id="recipeList"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
