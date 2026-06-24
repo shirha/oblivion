@@ -27,6 +27,9 @@ function setupNav() {
   const filtersBtn = document.getElementById("showFilters");
   const recipesBtn = document.getElementById("showRecipes");
 
+  console.log("filtersBtn:", filtersBtn);
+  console.log("recipesBtn:", recipesBtn);
+
   filtersBtn?.addEventListener("click", () => {
     document.body.classList.remove("show-recipes");
   });
