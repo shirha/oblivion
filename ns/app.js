@@ -1,17 +1,30 @@
 let RECIPES = [];
 
+const MAX_RECIPES = 40;
+
 const state = {
   ingredients: new Set(),
-  effects: new Set()
+  effects: new Set(),
+
+  pureOnly: false,
+  threeOnly: false
 };
 
+/* -----------------------------
+   LOAD DATA
+------------------------------ */
+
 async function loadData() {
-  const res = await fetch("nordic_souls_all_recipes.json");
+  const res = await fetch("data/recipes.json");
   RECIPES = await res.json();
 
   renderFilters();
   renderRecipes();
 }
+
+/* -----------------------------
+   FILTER BUILDING
+------------------------------ */
 
 function getAllFilters() {
   const ingredients = new Set();
@@ -28,37 +41,121 @@ function getAllFilters() {
   };
 }
 
+/* -----------------------------
+   PURE CHECK
+------------------------------ */
+
+function isPure(recipe) {
+  const t = recipe.type || [];
+  const has0 = t.includes(0);
+  const has1 = t.includes(1);
+
+  return !(has0 && has1); // pure = NOT mixed
+}
+
+/* -----------------------------
+   MATCH LOGIC
+------------------------------ */
+
+// function matches(recipe) {
+//   const ingMatch =
+//     state.ingredients.size === 0 ||
+//     [...state.ingredients].every(i => recipe.ingredients.includes(i));
+
+//   const effMatch =
+//     state.effects.size === 0 ||
+//     [...state.effects].every(e => recipe.effects.includes(e));
+
+//   const countMatch =
+//     !state.threeOnly ||
+//     recipe.ingredients.length === 3;
+
+//   const pureMatch =
+//     !state.pureOnly ||
+//     isPure(recipe);
+
+//   return ingMatch && effMatch && countMatch && pureMatch;
+// }
+
 function matches(recipe) {
   const ingMatch =
     state.ingredients.size === 0 ||
-    [...state.ingredients].every(i => recipe.ingredients.includes(i));
+    [...state.ingredients].every(i =>
+      recipe.ingredients.includes(i)
+    );
 
   const effMatch =
     state.effects.size === 0 ||
-    [...state.effects].every(e => recipe.effects.includes(e));
+    [...state.effects].every(e =>
+      recipe.effects.includes(e)
+    );
 
-  return ingMatch && effMatch;
+  const countMatch =
+    state.threeOnly ||
+    recipe.ingredients.length === 2;
+
+  const pureMatch =
+    !state.pureOnly ||
+    isPure(recipe);
+
+  return ingMatch && effMatch && countMatch && pureMatch;
 }
+
+/* -----------------------------
+   FILTER RENDERING
+------------------------------ */
 
 function renderFilters() {
   const { ingredients, effects } = getAllFilters();
 
   const ingDiv = document.getElementById("ingredientFilters");
   const effDiv = document.getElementById("effectFilters");
+  const metaDiv = document.getElementById("metaFilters");
 
   ingDiv.innerHTML = "";
   effDiv.innerHTML = "";
+  metaDiv.innerHTML = "";
 
   for (const i of ingredients) {
-    const el = createChip(i, "ingredient");
-    ingDiv.appendChild(el);
+    ingDiv.appendChild(createChip(i, "ingredient"));
   }
 
   for (const e of effects) {
-    const el = createChip(e, "effect");
-    effDiv.appendChild(el);
+    effDiv.appendChild(createChip(e, "effect"));
   }
+
+  // -----------------------------
+  // META BUTTONS
+  // -----------------------------
+
+  const pure = document.createElement("div");
+  pure.className = "chip";
+  pure.textContent = "Pure Only";
+
+  pure.onclick = () => {
+    state.pureOnly = !state.pureOnly;
+    pure.classList.toggle("active");
+    renderRecipes();
+  };
+
+  metaDiv.appendChild(pure);
+
+  const three = document.createElement("div");
+  three.className = "chip";
+  three.textContent = "3 Ingredients";
+
+  three.onclick = () => {
+    state.threeOnly = !state.threeOnly;
+    three.classList.toggle("active");
+    renderRecipes();
+  };
+
+  metaDiv.appendChild(three);
 }
+
+/* -----------------------------
+   CHIP CREATION
+------------------------------ */
 
 function createChip(label, type) {
   const el = document.createElement("div");
@@ -66,7 +163,9 @@ function createChip(label, type) {
   el.textContent = label;
 
   el.onclick = () => {
-    const set = type === "ingredient" ? state.ingredients : state.effects;
+    const set = type === "ingredient"
+      ? state.ingredients
+      : state.effects;
 
     if (set.has(label)) {
       set.delete(label);
@@ -82,11 +181,36 @@ function createChip(label, type) {
   return el;
 }
 
+/* -----------------------------
+   MIXED CHECK (for UI only)
+------------------------------ */
+
+function isMixed(recipe) {
+  const t = recipe.type || [];
+  return t.includes(0) && t.includes(1);
+}
+
+/* -----------------------------
+   RENDER RECIPES
+------------------------------ */
+
 function renderRecipes() {
   const container = document.getElementById("recipeList");
   container.innerHTML = "";
 
-  const filtered = RECIPES.filter(matches);
+  const filteredAll = RECIPES.filter(matches);
+  const filtered = filteredAll.slice(0, MAX_RECIPES);
+  const hint = document.createElement("div");
+
+  if (filteredAll.length > MAX_RECIPES) {
+    hint.className = "hint";
+    hint.textContent =
+      `Showing first ${MAX_RECIPES} of ${filteredAll.length} recipes`;
+  } else {
+    hint.textContent =
+      `Showing ${filteredAll.length} recipes`;
+  }
+  container.appendChild(hint);
 
   for (const r of filtered) {
     const div = document.createElement("div");
@@ -95,11 +219,29 @@ function renderRecipes() {
     div.innerHTML = `
       <div><b>Ingredients:</b> ${r.ingredients.join(", ")}</div>
       <div><b>Effects:</b> ${r.effects.join(", ")}</div>
-      <div><b>Value:</b> ${r.value}</div>
+      <div>
+        <b>Value:</b>
+        <span class="value ${isMixed(r) ? "mixed" : ""}">
+          ${r.value}
+        </span>
+      </div>
     `;
+
+    console.log(
+      "3-filter:",
+      state.threeOnly,
+      "recipes:",
+      RECIPES.length,
+      "filtered:",
+      RECIPES.filter(matches).length
+    );
 
     container.appendChild(div);
   }
 }
+
+/* -----------------------------
+   START
+------------------------------ */
 
 loadData();
