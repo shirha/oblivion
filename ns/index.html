@@ -7,7 +7,7 @@
 <style>
 html, body {
   margin: 0;
-  padding: 0;
+  padding: 20px;
   height: 100%;
 }
 
@@ -15,7 +15,7 @@ html, body {
 .app {
   display: flex;
 
-  width: 200vw;
+  width: 100vw;
   height: 100vh;
 
   overflow-x: auto;
@@ -28,12 +28,17 @@ html, body {
 /* EACH PANEL */
 .filters,
 .recipes {
-  flex: 0 0 100vw;   /* IMPORTANT */
-  width: 100vw;
+  flex: 0 0 100vw;
+
   height: 100vh;
 
   overflow-y: auto;
+  overflow-x: hidden;
+
   scroll-snap-align: start;
+  box-sizing: border-box;
+
+  padding: 10px;
 }
 </style>
 </head>
