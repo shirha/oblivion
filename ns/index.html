@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nordic Souls Recipes</title>
 
   <style>
@@ -33,14 +34,45 @@
       flex: 1;
       overflow-y: auto;
       box-sizing: border-box;
-      padding: 10px;
+      margin-bottom: 12px;
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .chip {
+      display: inline-block;
+      padding: 4px 8px;
+      margin: 2px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .chip.active {
+      background: #333;
+      color: white;
+    }
+
+    .value {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .value.mixed {
+      background: #ffecb3;
+      color: black;
+    }
+
+    .hint {
+      margin-bottom: 6px;
     }
 
     /* =========================
        MOBILE LAYOUT
     ========================== */
 
-    @media (max-width: 71000px) {
+    @media (max-width: 1000px) {
       .app {
         display: block;
         position: relative;
@@ -61,6 +93,7 @@
         flex: 1;
         padding: 10px;
         font-size: 14px;
+        border: 1px solid #ccc;
       }
 
       .filters,
