@@ -21,19 +21,20 @@ async function loadData() {
   renderFilters();
   renderRecipes();
 
-  document.getElementById("showFilters")
-    .addEventListener("click", () => {
-      document.body.classList.remove("show-recipes");
-    });
-
-  document.getElementById("showRecipes")
-    .addEventListener("click", () => {
-      document.body.classList.add("show-recipes");
-    });
-
-
 }
 
+function setupNav() {
+  const filtersBtn = document.getElementById("showFilters");
+  const recipesBtn = document.getElementById("showRecipes");
+
+  filtersBtn?.addEventListener("click", () => {
+    document.body.classList.remove("show-recipes");
+  });
+
+  recipesBtn?.addEventListener("click", () => {
+    document.body.classList.add("show-recipes");
+  });
+}
 
 /* -----------------------------
    FILTER BUILDING
@@ -257,4 +258,5 @@ function renderRecipes() {
    START
 ------------------------------ */
 
+setupNav();
 loadData();

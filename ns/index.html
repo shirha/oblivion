@@ -41,16 +41,17 @@
     ========================== */
 
     @media (max-width: 700px) {
-
       .app {
         display: block;
+        position: relative;
+        z-index: 1;
       }
 
       .mobile-nav {
         display: flex;
         position: sticky;
         top: 0;
-        z-index: 1000;
+        z-index: 9999;
         background: #111;
         padding: 8px;
         gap: 8px;
