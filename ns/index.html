@@ -7,7 +7,7 @@
 <style>
 html, body {
   margin: 0;
-  padding: 20px;
+  padding: 0;
   height: 100%;
 }
 
@@ -40,29 +40,81 @@ html, body {
 
   padding: 10px;
 }
+
+/* Mobile-only behavior */
+@media (max-width: 700px) {
+
+  .mobile-nav {
+    display: flex;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #111;
+    padding: 8px;
+  }
+
+  .mobile-nav button {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* full width panels */
+  .filters,
+  .recipes {
+    width: 100%;
+  }
+
+  /* start state: show filters only */
+  .recipes {
+    display: none;
+  }
+
+  /* toggle state */
+  body.show-recipes .filters {
+    display: none;
+  }
+
+  body.show-recipes .recipes {
+    display: block;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
+<body>
+
+  <!-- Mobile-only navigation -->
+  <div class="mobile-nav">
+    <button id="showFilters">Filters</button>
+    <button id="showRecipes">Recipes</button>
+  </div>
+
   <div class="app">
 
-    <!-- PANEL 1: FILTERS -->
-<div class="filters">
-  <h3>Options</h3>
-  <div id="metaFilters"></div>
+    <!-- FILTER PANEL -->
+    <div class="filters">
 
-  <h3>Ingredients</h3>
-  <div id="ingredientFilters"></div>
+      <h3>Options</h3>
+      <div id="metaFilters"></div>
 
-  <h3>Effects</h3>
-  <div id="effectFilters"></div>
-</div>
+      <h3>Ingredients</h3>
+      <div id="ingredientFilters"></div>
 
-    <!-- PANEL 2: RECIPES -->
+      <h3>Effects</h3>
+      <div id="effectFilters"></div>
+
+    </div>
+
+    <!-- RECIPE PANEL -->
     <div class="recipes">
 
       <h2>Recipes</h2>
+
       <div id="recipeList"></div>
 
     </div>

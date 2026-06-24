@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nordic Souls Recipes</title>
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* MAIN SWIPE CONTAINER */
+
+.app {
+  display: flex;
+
+  width: 200vw;
+  height: 100vh;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-snap-type: x mandatory; /* important */
+  -webkit-overflow-scrolling: touch;
+}
+
+.app {
+  display: flex;
+
+  width: 200vw;
+  height: 100vh;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* EACH PANEL */
+.filters,
+.recipes {
+  width: 100vw;
+  height: 100vh;
+
+  flex-shrink: 0;
+
+  overflow-y: auto;   /* IMPORTANT: only panels scroll vertically */
+  overflow-x: hidden;
+
+  scroll-snap-align: start;
+  box-sizing: border-box;
+
+  padding: 10px;
+}
+.filters,
+.recipes {
+  width: 100vw;
+  height: 100vh;
+
+  flex-shrink: 0;
+
+  overflow-y: auto;
+
+  scroll-snap-align: start; /* important */
+}
+</style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- PANEL 1: FILTERS -->
+<div class="filters">
+  <h3>Options</h3>
+  <div id="metaFilters"></div>
+
+  <h3>Ingredients</h3>
+  <div id="ingredientFilters"></div>
+
+  <h3>Effects</h3>
+  <div id="effectFilters"></div>
+</div>
+
+    <!-- PANEL 2: RECIPES -->
+    <div class="recipes">
+
+      <h2>Recipes</h2>
+      <div id="recipeList"></div>
+
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
