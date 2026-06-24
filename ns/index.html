@@ -4,84 +4,79 @@
   <meta charset="UTF-8" />
   <title>Nordic Souls Recipes</title>
 
-  <style>
-    body {
-      font-family: sans-serif;
-      display: flex;
-      gap: 20px;
-    }
+<style>
+/* --- safety reset --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* prevents weird browser scroll */
+}
 
-    h3 {
-      margin-top: 12px;
-    }
+/* --- main swipe container --- */
+.app {
+  display: flex;
 
-    .chip {
-      display: inline-block;
-      padding: 4px 8px;
-      margin: 3px;
-      border: 1px solid #ccc;
-      cursor: pointer;
-      border-radius: 4px;
-      user-select: none;
-      white-space: nowrap;
-    }
+  width: 200vw;        /* two full screens */
+  height: 100vh;
 
-    .chip.active {
-      background: #333;
-      color: white;
-    }
+  overflow-x: auto;
+  overflow-y: hidden;
 
-    .recipe {
-      width: 300px;
-      margin-bottom: 12px;
-      padding: 8px;
-      border-bottom: 1px solid #ddd;
-    }
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
 
-    .value.mixed {
-      background: yellow;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
+/* --- each panel becomes a full screen page --- */
+.filters,
+.recipes {
+  width: 100vw;
+  height: 100vh;
 
-    .hint {
-      margin: 10px 0;
-      opacity: 0.7;
-      font-size: 0.9em;
-    }
+  flex-shrink: 0;
 
-    .filters {
-      width: 300px;
-      position: sticky;
-      top: 0;
-  
-      height: 100vh;
-      overflow-y: auto;
+  overflow-y: auto;    /* vertical scroll inside each panel */
 
-      box-sizing: border-box;
-      padding-right: 8px;
-    }
-  </style>
+  scroll-snap-align: start;
+  box-sizing: border-box;
+
+  padding: 10px;
+}
+
+/* --- optional: make it feel nicer on mobile --- */
+.filters, .recipes {
+  -webkit-overflow-scrolling: touch;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="filters">
-    <h3>Options</h3>
-    <div id="metaFilters"></div>
+  <div class="app">
 
-    <h3>Ingredients</h3>
-    <div id="ingredientFilters"></div>
+    <!-- PANEL 1: FILTERS -->
+<div class="filters">
+  <h3>Options</h3>
+  <div id="metaFilters"></div>
 
-    <h3>Effects</h3>
-    <div id="effectFilters"></div>
-  </div>
+  <h3>Ingredients</h3>
+  <div id="ingredientFilters"></div>
 
-  <div class="recipes">
-    <h2>Recipes</h2>
-    <div id="recipeList"></div>
+  <h3>Effects</h3>
+  <div id="effectFilters"></div>
+</div>
+
+    <!-- PANEL 2: RECIPES -->
+    <div class="recipes">
+
+      <h2>Recipes</h2>
+      <div id="recipeList"></div>
+
+    </div>
+
   </div>
 
   <script src="app.js"></script>
 </body>
 </html>
+
