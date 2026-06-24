@@ -5,19 +5,17 @@
   <title>Nordic Souls Recipes</title>
 
 <style>
-/* --- safety reset --- */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* prevents weird browser scroll */
 }
 
-/* --- main swipe container --- */
+/* MAIN SWIPE CONTAINER */
 .app {
   display: flex;
 
-  width: 200vw;        /* two full screens */
+  width: 200vw;
   height: 100vh;
 
   overflow-x: auto;
@@ -27,7 +25,7 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* --- each panel becomes a full screen page --- */
+/* EACH PANEL */
 .filters,
 .recipes {
   width: 100vw;
@@ -35,17 +33,13 @@ html, body {
 
   flex-shrink: 0;
 
-  overflow-y: auto;    /* vertical scroll inside each panel */
+  overflow-y: auto;   /* IMPORTANT: only panels scroll vertically */
+  overflow-x: hidden;
 
   scroll-snap-align: start;
   box-sizing: border-box;
 
   padding: 10px;
-}
-
-/* --- optional: make it feel nicer on mobile --- */
-.filters, .recipes {
-  -webkit-overflow-scrolling: touch;
 }
 </style>
 </head>
