@@ -218,11 +218,13 @@ function renderRecipes() {
   const filteredAll = RECIPES.filter(matches);
   const filtered = filteredAll.slice(0, MAX_RECIPES);
   const hint = document.createElement("div");
+  const el = document.querySelector('.app');
+
 
   if (filteredAll.length > MAX_RECIPES) {
     hint.className = "hint";
     hint.textContent =
-      `Showing first ${MAX_RECIPES} of ${filteredAll.length} recipes`;
+      `Showing first ${MAX_RECIPES} of ${filteredAll.length} recipes (${el.clientWidth})`;
   } else {
     hint.textContent =
       `Showing ${filteredAll.length} recipes`;
