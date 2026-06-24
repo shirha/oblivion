@@ -30,12 +30,25 @@
       padding: 10px;
     }
 
-    .recipes {
+/*    .recipes {
       flex: 1;
       overflow-y: auto;
       box-sizing: border-box;
       margin-bottom: 12px;
       padding: 8px;
+      border-bottom: 1px solid #ccc;
+    }*/
+
+    .recipes {
+      flex: 1;
+      overflow-y: auto;
+      box-sizing: border-box;
+      padding: 8px;
+    }
+
+    .recipe {
+      margin-bottom: 8px;
+      padding-bottom: 8px;
       border-bottom: 1px solid #ccc;
     }
 
@@ -65,7 +78,7 @@
     }
 
     .hint {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     /* =========================
@@ -84,9 +97,8 @@
         position: sticky;
         top: 0;
         z-index: 9999;
-        background: #111;
-        padding: 8px;
-        gap: 8px;
+        padding: 0;
+        gap: 0;
       }
 
       .mobile-nav button {
@@ -94,6 +106,7 @@
         padding: 10px;
         font-size: 14px;
         border: 1px solid #ccc;
+        background: #f0f0f0;
       }
 
       .filters,

@@ -70,30 +70,6 @@ function isPure(recipe) {
   return !(has0 && has1); // pure = NOT mixed
 }
 
-/* -----------------------------
-   MATCH LOGIC
------------------------------- */
-
-// function matches(recipe) {
-//   const ingMatch =
-//     state.ingredients.size === 0 ||
-//     [...state.ingredients].every(i => recipe.ingredients.includes(i));
-
-//   const effMatch =
-//     state.effects.size === 0 ||
-//     [...state.effects].every(e => recipe.effects.includes(e));
-
-//   const countMatch =
-//     !state.threeOnly ||
-//     recipe.ingredients.length === 3;
-
-//   const pureMatch =
-//     !state.pureOnly ||
-//     isPure(recipe);
-
-//   return ingMatch && effMatch && countMatch && pureMatch;
-// }
-
 function matches(recipe) {
   const ingMatch =
     state.ingredients.size === 0 ||
@@ -218,11 +194,11 @@ function renderRecipes() {
   const filteredAll = RECIPES.filter(matches);
   const filtered = filteredAll.slice(0, MAX_RECIPES);
   const hint = document.createElement("div");
+  hint.className = "hint";
   const el = document.querySelector('.app');
 
 
   if (filteredAll.length > MAX_RECIPES) {
-    hint.className = "hint";
     hint.textContent =
       `Showing first ${MAX_RECIPES} of ${filteredAll.length} recipes (${el.clientWidth})`;
   } else {
