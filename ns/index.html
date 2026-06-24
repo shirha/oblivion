@@ -4,91 +4,91 @@
   <meta charset="UTF-8" />
   <title>Nordic Souls Recipes</title>
 
-<style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: sans-serif;
+    }
 
-/* MAIN SWIPE CONTAINER */
-.app {
-  display: flex;
+    /* =========================
+       DESKTOP LAYOUT
+    ========================== */
 
-  width: 100vw;
-  height: 100vh;
+    .app {
+      display: flex;
+      height: 100vh;
+    }
 
-  overflow-x: auto;
-  overflow-y: hidden;
+    .filters {
+      width: 300px;
+      overflow-y: auto;
+      border-right: 1px solid #333;
+      box-sizing: border-box;
+      padding: 10px;
+    }
 
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
+    .recipes {
+      flex: 1;
+      overflow-y: auto;
+      box-sizing: border-box;
+      padding: 10px;
+    }
 
-/* EACH PANEL */
-.filters,
-.recipes {
-  flex: 0 0 100vw;
+    /* =========================
+       MOBILE LAYOUT
+    ========================== */
 
-  height: 100vh;
+    @media (max-width: 700px) {
 
-  overflow-y: auto;
-  overflow-x: hidden;
+      .app {
+        display: block;
+      }
 
-  scroll-snap-align: start;
-  box-sizing: border-box;
+      .mobile-nav {
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #111;
+        padding: 8px;
+        gap: 8px;
+      }
 
-  padding: 10px;
-}
+      .mobile-nav button {
+        flex: 1;
+        padding: 10px;
+        font-size: 14px;
+      }
 
-/* Mobile-only behavior */
-@media (max-width: 700px) {
+      .filters,
+      .recipes {
+        width: 100%;
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+      }
 
-  .mobile-nav {
-    display: flex;
-    gap: 8px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: #111;
-    padding: 8px;
-  }
+      /* default: show filters only */
+      .recipes {
+        display: none;
+      }
 
-  .mobile-nav button {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
-  }
+      body.show-recipes .filters {
+        display: none;
+      }
 
-  /* full width panels */
-  .filters,
-  .recipes {
-    width: 100%;
-  }
+      body.show-recipes .recipes {
+        display: block;
+      }
+    }
 
-  /* start state: show filters only */
-  .recipes {
-    display: none;
-  }
-
-  /* toggle state */
-  body.show-recipes .filters {
-    display: none;
-  }
-
-  body.show-recipes .recipes {
-    display: block;
-  }
-}
-
-</style>
+  </style>
 </head>
 
 <body>
 
-<body>
-
-  <!-- Mobile-only navigation -->
+  <!-- MOBILE NAV -->
   <div class="mobile-nav">
     <button id="showFilters">Filters</button>
     <button id="showRecipes">Recipes</button>
@@ -110,7 +110,7 @@ html, body {
 
     </div>
 
-    <!-- RECIPE PANEL -->
+    <!-- RECIPES PANEL -->
     <div class="recipes">
 
       <h2>Recipes</h2>
@@ -122,6 +122,6 @@ html, body {
   </div>
 
   <script src="app.js"></script>
+
 </body>
 </html>
-
