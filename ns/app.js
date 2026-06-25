@@ -27,9 +27,6 @@ function setupNav() {
   const filtersBtn = document.getElementById("showFilters");
   const recipesBtn = document.getElementById("showRecipes");
 
-  console.log("filtersBtn:", filtersBtn);
-  console.log("recipesBtn:", recipesBtn);
-
   filtersBtn?.addEventListener("click", () => {
     document.body.classList.remove("show-recipes");
   });
@@ -37,6 +34,28 @@ function setupNav() {
   recipesBtn?.addEventListener("click", () => {
     document.body.classList.add("show-recipes");
   });
+
+  const ingredsFilters = document.getElementById("ingredientFilters").previousElementSibling;
+  const effectsFilters = document.getElementById("effectFilters").previousElementSibling;
+
+  ingredsFilters?.addEventListener("click", () => {
+    effectsFilters.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+      container: "nearest"   // Modern browsers only
+    });
+  });
+
+  effectsFilters?.addEventListener("click", () => {
+    ingredsFilters.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest",
+      container: "nearest"   // Modern browsers only
+    });
+  });
+
 }
 
 /* -----------------------------
@@ -193,10 +212,10 @@ function renderRecipes() {
 
   const filteredAll = RECIPES.filter(matches);
   const filtered = filteredAll.slice(0, MAX_RECIPES);
-  const hint = document.createElement("div");
-  hint.className = "hint";
-  const el = document.querySelector('.app');
 
+  const el = document.querySelector('.app');
+  const hint = document.querySelector(".hint");
+  console.log("hint:",hint)
 
   if (filteredAll.length > MAX_RECIPES) {
     hint.textContent =
@@ -205,7 +224,6 @@ function renderRecipes() {
     hint.textContent =
       `Showing ${filteredAll.length} recipes`;
   }
-  container.appendChild(hint);
 
   for (const r of filtered) {
     const div = document.createElement("div");
@@ -219,25 +237,49 @@ function renderRecipes() {
         <span class="value ${isMixed(r) ? "mixed" : ""}">
           ${r.value}
         </span>
+        <hr>
       </div>
     `;
 
-    console.log(
-      "3-filter:",
-      state.threeOnly,
-      "recipes:",
-      RECIPES.length,
-      "filtered:",
-      RECIPES.filter(matches).length
-    );
-
     container.appendChild(div);
   }
+
+  console.log({
+    '3-filter': state.threeOnly,
+    recipes: RECIPES.length,
+    filtered: RECIPES.filter(matches).length,
+    width: window.innerWidth,
+    height: window.innerHeight,
+    minDim: Math.min(window.innerWidth, window.innerHeight),
+    maxTouchPoints: navigator.maxTouchPoints,
+    isPhone: isPhone()
+  });
 }
+
+function isPhone() {
+  const minDimension = Math.min(window.innerWidth, window.innerHeight);
+  const isTouch = navigator.maxTouchPoints > 0;
+  return isTouch && minDimension < 481; 
+}
+
+// Apply phone class to body
+function updateLayout() {
+  if (isPhone()) {
+    document.body.classList.add('phone');
+  } else {
+    document.body.classList.remove('phone');
+  }
+}
+
+window.addEventListener('load', updateLayout);
+window.addEventListener('resize', updateLayout);
+window.addEventListener('orientationchange', updateLayout);
 
 /* -----------------------------
    START
 ------------------------------ */
+
+
 
 setupNav();
 loadData();
