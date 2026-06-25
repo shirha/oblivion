@@ -1,4 +1,6 @@
+###[Nordic Souls Recipe Finder](https://shirha.github.io/oblivion/base/)
 This is the base code given to me by ChatGPT 5. Awesome.
+
 
 My favorite Poison is Lingering Damage Health + Damage Health<br/>
 Use Imp Stool, Mora Tapinella with either Nightshade<br/>
