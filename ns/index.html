@@ -6,12 +6,17 @@
   <title>Nordic Souls Recipes</title>
 
   <style>
+    img {
+      height: 18px;
+      transform: translateY(4px);
+    }
+
     hr {
       border: none;               /* Removes the default browser 3D border */
       border-top: 1px solid #ccc; /* Creates a clean, 1px solid line */
       height: 0;                  /* Ensures no extra height is calculated */
       width: 80%;
-      margin: 10px auto 10px 0;   /* left aligned */
+      margin: 8px auto 8px 0;    left aligned */
     }
 
     .hand {cursor: pointer;}
@@ -32,16 +37,15 @@
       height: 100vh;
     }
 
-    .filters {
+    .filters, .ingredients {
       width: 420px;
       overflow-y: auto;
-      border-right: 1px solid #ccc;
       box-sizing: border-box;
       padding: 10px;
     }
 
     .filters h3 {
-      scroll-margin-top: 20px;
+      scroll-margin-top: 20px; /* scrollIntoView() */
       width: fit-content;
     }
 
@@ -50,13 +54,23 @@
       overflow-y: auto;
       box-sizing: border-box;
       padding: 8px;
-      max-width: 720px;
+      max-width: 100%;
     }
 
-     .recipe {
+     /*.recipe {
       margin-bottom: 8px;
       padding-bottom: 8px;
-      /*border-bottom: 1px solid #ccc;*/
+    }*/
+
+    .ls {
+      padding: 4px 8px;
+      margin: 2px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+    .ls:active {
+      background: #ddff;
     }
 
     .chip {
@@ -66,11 +80,6 @@
       border: 1px solid #ccc;
       cursor: pointer;
       border-radius: 4px;
-    }
-
-    .chip.active {
-      background: #333;
-      color: white;
     }
 
     .value {
@@ -85,7 +94,7 @@
     }
 
     .mobile-nav {
-      display: none; /* hidden by default */
+      display: none;              /* hidden by default */
     }
 
     /* =========================
@@ -98,15 +107,27 @@
       z-index: 1;
     }
 
+    body.phone .panel {
+      width: 100%;
+      height: calc(100vh - 50px);
+      overflow-y: auto;
+      display: none;              /* hide all by default */
+    }
+
+    body.phone .panel.active {
+      display: block;
+    }
+
     body.phone .mobile-nav {
       display: flex;
       position: sticky;
       top: 0;
       z-index: 9999;
       padding: 0;
-      gap: 8px;
+      gap: 0;
     }
 
+    #show-effects,
     body.phone .mobile-nav button {
       margin: 8px 8px 0 8px;
       flex: 1;
@@ -114,6 +135,16 @@
       font-size: 16px;
       border: 1px solid #ccc;
       background: #f0f0f0;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .chip.active,
+    #show-effects.active,
+    body.phone .mobile-nav button.active {
+      background: #ddf;
+  /*  background: #444;
+      color: black; */
     }
 
     body.phone .mobile-nav button + button {
@@ -121,51 +152,95 @@
     }
 
     body.phone .filters,
-    body.phone .recipes {
+    body.phone .recipes,
+    body.phone .ingredients {
       width: 100%;
       height: calc(100vh - 50px);
       overflow-y: auto;
     }
 
-    /* Default: show filters only on mobile */
-    body.phone .recipes {
-      display: none;
+    .pool {
+      display: flex;
+      flex-direction: column;
     }
 
-    body.phone.show-recipes .filters {
-      display: none;
+    .btn-move {
+        display: inline-block;
+        background-color: #ffcce6;
+        border-radius: 50%;
+        padding: 2px 4px;
+        cursor: pointer;
+    }
+    .btn-move.active {
+      background-color: #80ff80;
     }
 
-    body.phone.show-recipes .recipes {
-      display: block;
+    .effects-list {
+        margin-left: 40px;     
+        color: #333;          
+        font-size: 0.9em;     
     }
   </style>
 </head>
-
 <body>
 
   <!-- MOBILE NAV -->
   <div class="mobile-nav">
+    <!--button id="showIngreds">Ingredients</button-->
     <button id="showFilters">Filters</button>
     <button id="showRecipes">Recipes</button>
   </div>
 
   <div class="app">
-    <!-- FILTER PANEL -->
-    <div class="filters">
+
+    <!-- INGREDIENTS PANEL>
+    <div class="panel ingredients" id="panel-ingredients">
+
+    </div-->
+
+    <!-- FILTERS PANEL -->
+    <div class="panel filters" id="panel-filters">
       <h3>Options</h3>
       <div id="metaFilters"></div>
 
-      <h3 class=hand>Ingredients ↓</h3>
-      <div id="ingredientFilters"></div>
+      <!-- ingredientsPool -->
 
-      <h3 class=hand>Effects ↑</h3>
-      <div id="effectFilters"></div>
+      <h3 id="ingredsH3" class="hand">Ingredients ↓</h3>
+      <div id="ingredientFilters">
+
+        <div style="margin:10px 0;">
+          <strong>Included</strong>
+        </div>
+        <div class="includedPool pool"></div>
+
+        <div style="margin:15px 0 10px 0;">
+          <strong>Excluded</strong>
+        </div>
+        <div class="excludedPool pool"></div>
+
+      </div>
+
+      <!-- effectsPool -->
+
+      <h3 id="effectsH3" class="hand">Effects ↑</h3>
+      <div id="effectFilters">
+
+        <div style="margin:10px 0;">
+          <strong>Included</strong>
+        </div>
+        <div class="includedPool pool"></div>
+
+        <div style="margin:15px 0 10px 0;">
+          <strong>Excluded</strong>
+        </div>
+        <div class="excludedPool pool"></div>
+
+      </div> 
     </div>
 
     <!-- RECIPES PANEL -->
-    <div class="recipes">
-      <h2>Recipes</h2>
+    <div class="panel recipes" id="panel-recipes">
+      <h3 id="warn">Recipes</h3>
       <div id="recipeList"></div>
       <div class="hint"></div>
     </div>
