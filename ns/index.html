@@ -37,11 +37,11 @@
       height: 100vh;
     }
 
-    .filters, .ingredients {
-      width: 420px;
+    .filters {
       overflow-y: auto;
       box-sizing: border-box;
       padding: 10px;
+      width: 420px;
     }
 
     .filters h3 {
@@ -53,14 +53,9 @@
       flex: 1;
       overflow-y: auto;
       box-sizing: border-box;
-      padding: 8px;
-      max-width: 100%;
+      padding: 10px;
+      width: 100%;
     }
-
-     /*.recipe {
-      margin-bottom: 8px;
-      padding-bottom: 8px;
-    }*/
 
     .ls {
       padding: 4px 8px;
@@ -152,8 +147,7 @@
     }
 
     body.phone .filters,
-    body.phone .recipes,
-    body.phone .ingredients {
+    body.phone .recipes {
       width: 100%;
       height: calc(100vh - 50px);
       overflow-y: auto;
@@ -170,12 +164,13 @@
         border-radius: 50%;
         padding: 2px 4px;
         cursor: pointer;
+        margin-right: 4px;
     }
     .btn-move.active {
       background-color: #80ff80;
     }
 
-    .effects-list {
+    .item-list {
         margin-left: 40px;     
         color: #333;          
         font-size: 0.9em;     
