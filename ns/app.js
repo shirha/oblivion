@@ -1,4 +1,4 @@
-const version = "1.0"
+const version = "1.1"
 
 let RECIPES = {};
 
@@ -590,6 +590,7 @@ function loadNamedList(name) {
 
   setLastUsedList(name);
 
+  renderNamedLists();
   renderIngreds();
   renderRecipes();
 }
@@ -647,6 +648,7 @@ function deleteNamedList(name) {
 function renderNamedLists() {
 
   const namedLists = getNamedLists();
+  const last = getLastUsedList();
 
   NamedListsUI.listContainer.innerHTML = "";
 
@@ -660,6 +662,9 @@ function renderNamedLists() {
       const input = document.createElement("input");
       input.value = name;
       input.readOnly = true;
+      if (name === last){
+        input.className = "active";
+      }
 
       input.onclick = () => loadNamedList(name);
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="document-version" content="1.0">
+  <meta name="document-version" content="1.1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nordic Souls Recipes</title>
 
@@ -17,7 +17,7 @@
       border-top: 1px solid #ccc; /* Creates a clean, 1px solid line */
       height: 0;                  /* Ensures no extra height is calculated */
       width: 80%;
-      margin: 8px auto 8px 0;    /* left aligned */
+      margin: 8px auto 12px 0;    /* left aligned */
     }
 
     .hand {cursor: pointer;}
@@ -67,6 +67,10 @@
     }
     .ls:active {
       background: #ddff;
+    }
+
+    .ls:focus-visible {
+      outline: none;
     }
 
     .chip {
@@ -213,6 +217,10 @@
     .named-list input {
       flex: 1;
       min-width: 0;      /* important! allows shrinking */
+    }
+
+    .named-list input.active {
+      background-color: #ddf;
     }
 
     .named-list button {
