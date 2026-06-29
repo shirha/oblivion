@@ -23,8 +23,13 @@ make the most expensive potions you don't want to be excluding any effects!
 
 [Nordic Souls](https://www.nexusmods.com/skyrimspecialedition/mods/77497) is a 
 [Simon Rim](https://www.nexusmods.com/profile/SimonMagus/mods?gameId=1704) Wabbajack modlist. 
-It uses [Apothecary](https://www.nexusmods.com/skyrimspecialedition/mods/52130) an Alchemy Overhaul.
+It uses [Apothecary](https://www.nexusmods.com/skyrimspecialedition/mods/52130) an Alchemy Overhaul. 
+Apothecary changed a lot of the Skyrim vanilla ingredient effects. You still get mixed potions, that is,
+potions with positive and negative effects but if any effects are negative it makes a poison and the value
+is the sum of all the negative effects. the value of the positive effects are not included.
 
+Note. The value of a potion was calculated in game at Alchemy ≈50 and a perk point in Herbalist, Concentration and Intensity 
+so the relative value of all the recipes should be the same.
 
 
 
