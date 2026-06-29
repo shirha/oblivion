@@ -1,5 +1,9 @@
 [Nordic Souls Recipe Finder](https://shirha.github.io/oblivion/ns/)
 
+The Recipe panel contains 15500 depending on what is selected in the Filters panel.
+The Filters panel manages a pool for ingredients and effects. Each pool is separated 
+in included and excluded lists. They can be moved between these lists using the ➕︎ and ➖︎ buttons.
+
 The goal of the recipe finder is to make it easy to grind out the 
 most expensive potions. When you run out of an ingredient at the top
 of the list just click it and it goes into the ingrdient excluded pool. 
@@ -35,7 +39,7 @@ Note. Potion values were calculated at Alchemy ≈50 and a perk in Herbalist, Co
 
 
 
-The first recipe on the list is Fortify Health + Fortify One-handed
+<!-- The first recipe on the list is Fortify Health + Fortify One-handed
 if you run out of Bear Claws then when you click it, 
 Bear Claws move to the Excluded pool in Filters
 
@@ -48,13 +52,13 @@ The next recipe on the list is
 
 Ingredients: Blue Mountain Flower, Hanging Moss\
 Effects: Fortify Health\
-Value: 82\
+Value: 82
 
 If you click on Fortify Health the next recipe on the list is
 
 Ingredients: Chaurus EggsLarge Antlers\
 Effects: Fortify Stamina\
-Value: 82\
+Value: 82
 
 and no more recipes with Fortify Health will be displayed
 Fortify Health with be moved the the excluded pool of Effects
