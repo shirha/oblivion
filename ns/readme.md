@@ -12,6 +12,18 @@ To support that goal, you can filter the recipe list. In the filter panel
 the ingredients are managed in two pools, included and excluded. You move 
 them around in the pool using the \[+] and \[-] buttons.
 
+The effects excluded pool is to allow you to search for recipes that don't
+have that effect. You are warn that you have an effect in the effects excluded
+pool with a pink ! to the right of the Recipe panel title. If you are trying to
+make the most expensive potions you don't want to be excluding any effects!
+
+If you want to save your ingredients included pool for later you can manage a
+list by clicking the Save button.
+
+[Nordic Souls](https://www.nexusmods.com/skyrimspecialedition/mods/77497) is a 
+[Simon Rim](https://www.nexusmods.com/profile/SimonMagus/mods?gameId=1704) Wabbajack modlist. 
+It uses [Apothecary](https://www.nexusmods.com/skyrimspecialedition/mods/52130) an Alchemy Overhaul.
+
 
 
 
