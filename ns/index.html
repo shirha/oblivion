@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="document-version" content="1.0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nordic Souls Recipes</title>
 
@@ -16,7 +17,7 @@
       border-top: 1px solid #ccc; /* Creates a clean, 1px solid line */
       height: 0;                  /* Ensures no extra height is calculated */
       width: 80%;
-      margin: 8px auto 8px 0;    left aligned */
+      margin: 8px auto 8px 0;    /* left aligned */
     }
 
     .hand {cursor: pointer;}
@@ -191,10 +192,6 @@
       cursor: pointer;
     }
 
-    /*#manageListsDialog input {
-      width: 200px;
-    }*/
-
     #manageListsDialog input:focus, 
     #manageListsDialog textarea:focus {
       outline: none;
@@ -206,21 +203,21 @@
       margin-bottom: 20px !important;
     }
 
-.named-list {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 6px;
-}
+    .named-list {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
 
-.named-list input {
-  flex: 1;
-  min-width: 0;      /* important! allows shrinking */
-}
+    .named-list input {
+      flex: 1;
+      min-width: 0;      /* important! allows shrinking */
+    }
 
-.named-list button {
-  flex: 0 0 auto;    /* keep buttons their natural size */
-}
+    .named-list button {
+      flex: 0 0 auto;    /* keep buttons their natural size */
+    }
 
   </style>
 </head>
@@ -235,17 +232,15 @@
 
   <div class="app">
 
-    <!-- INGREDIENTS PANEL>
-    <div class="panel ingredients" id="panel-ingredients">
-
-    </div-->
-
     <!-- FILTERS PANEL -->
     <div class="panel filters" id="panel-filters">
+
+      <!-- Meta Panel -->
+
       <h3>Options</h3>
       <div id="metaFilters"></div>
 
-      <!-- ingredientsPool -->
+      <!-- ingredients Pool -->
 
       <h3 id="ingredsH3" class="hand">Ingredients ↓</h3>
       <div id="ingredientFilters">
@@ -262,7 +257,7 @@
 
       </div>
 
-      <!-- effectsPool -->
+      <!-- effects Pool -->
 
       <h3 id="effectsH3" class="hand">Effects ↑</h3>
       <div id="effectFilters">
@@ -293,7 +288,7 @@
   <h2>Manage Include Lists</h2>
 
   <button id="btn-clear-all">Clear All Saved Lists</button>
-  <br>
+
   <div id="namedListsContainer"></div>
 
   <button id="btn-save-current">Save Current Included Pool</button>

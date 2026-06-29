@@ -1,3 +1,5 @@
+const version = "1.0"
+
 let RECIPES = {};
 
 const MAX_RECIPES = 40;
@@ -136,22 +138,6 @@ function setupNav() {
 
 }
 
-// function loadLocalStorage2() {
-//   const most_all = [ "Abecean Longfin", "Bear Claws", "Bee", "Beehive Husk", "Bleeding Crown", "Blisterwort", "Blue Butterfly Wing", "Blue Dartwing", "Blue Mountain Flower", "Bone Meal", "Briar Heart", "Butterfly Wing", "Canis Root", "Charred Skeever Hide", "Chaurus Eggs", "Chicken's Egg", "Creep Cluster", "Cyrodilic Spadetail", "Deathbell", "Dragon's Tongue", "Dwarven Oil", "Ectoplasm", "Elves Ear", "Eye Of Sabre Cat", "Falmer Ear", "Fire Salts", "Fly Amanita", "Frost Mirriam", "Frost Salts", "Garlic", "Giant Lichen", "Giant's Toe", "Glow Dust", "Glowing Mushroom", "Grass Pod", "Hagraven Claw", "Hagraven Feathers", "Hanging Moss", "Hawk Beak", "Hawk Feathers", "Histcarp", "Honeycomb", "Ice Wraith Teeth", "Imp Stool", "Jazbay Grapes", "Juniper Berries", "Large Antlers", "Lavender", "Luna Moth Wing", "Moon Sugar", "Mora Tapinella", "Mudcrab Chitin", "Namira's Rot", "Nightshade", "Nirnroot", "Nordic Barnacle", "Orange Dartwing", "Pearl", "Pine Thrush Egg", "Purple Mountain Flower", "Red Mountain Flower", "River Betty", "Rock Warbler Egg", "Sabre Cat Tooth", "Salt Pile", "Scaly Pholiota", "Silverside Perch", "Skeever Tail", "Slaughterfish Egg", "Slaughterfish Scales", "Small Antlers", "Small Pearl", "Snowberries", "Spider Egg", "Spriggan Sap", "Swamp Fungal Pod", "Taproot", "Thistle Branch", "Torchbug Thorax", "Troll Fat", "Tundra Cotton", "Vampire Dust", "Void Salts", "Wheat", "White Cap", "Wisp Wrappings"];
-//   const defaults =  [ "Bear Claws", "Blue Mountain Flower", "Canis Root", "Chaurus Eggs", "Chicken's Egg", "Deathbell", "Glow Dust", "Hanging Moss", "Ice Wraith Teeth", "Imp Stool", "Large Antlers", "Luna Moth Wing", "Nightshade", "Nirnroot", "River Betty", "Salt Pile", "Spider Egg", "Swamp Fungal Pod", "Vampire Dust"];
-
-//   const queue = JSON.parse(localStorage.getItem('ns:v1.namedLists')) || [];
-  
-//   if (queue.length) {
-//     state.includedIngredients = new Set(queue);
-//     console.log('Loaded localStorage...');
-//   } else {
-//     state.includedIngredients = new Set(defaults);
-//   }
-
-//   state.includedEffects = new Set(Object.keys(RECIPES.effects));
-// }
-
 /* -----------------------------
    RENDER META PANEL
 ------------------------------ */
@@ -215,30 +201,9 @@ function renderMeta() {
   save.className = "ls";
   save.textContent = "Save";
 
-  // save.onclick = () => {
-  //   localStorage.setItem('ns:v1.namedLists', JSON.stringify([...state.includedIngredients]));
-  // };
-
-  // save.onclick = addCurrentToNamedList;
-
   save.onclick = openManageDialog;
 
   metaDiv.appendChild(save);
-  
-  const ls = document.createElement("button");
-  ls.className = "ls";
-  ls.textContent = "LS";
-
-  ls.onclick = () => {
-
-    const most_all = ["Abecean Longfin", "Bear Claws", "Bee", "Beehive Husk", "Bleeding Crown", "Blisterwort", "Blue Butterfly Wing", "Blue Dartwing", "Blue Mountain Flower", "Bone Meal", "Briar Heart", "Butterfly Wing", "Canis Root", "Charred Skeever Hide", "Chaurus Eggs", "Chicken's Egg", "Creep Cluster", "Cyrodilic Spadetail", "Deathbell", "Dragon's Tongue", "Dwarven Oil", "Ectoplasm", "Elves Ear", "Eye Of Sabre Cat", "Falmer Ear", "Fire Salts", "Fly Amanita", "Frost Mirriam", "Frost Salts", "Garlic", "Giant Lichen", "Giant's Toe", "Glow Dust", "Glowing Mushroom", "Grass Pod", "Hagraven Claw", "Hagraven Feathers", "Hanging Moss", "Hawk Beak", "Hawk Feathers", "Histcarp", "Honeycomb", "Ice Wraith Teeth", "Imp Stool", "Jazbay Grapes", "Juniper Berries", "Large Antlers", "Lavender", "Luna Moth Wing", "Moon Sugar", "Mora Tapinella", "Mudcrab Chitin", "Namira's Rot", "Nightshade", "Nirnroot", "Nordic Barnacle", "Orange Dartwing", "Pearl", "Pine Thrush Egg", "Purple Mountain Flower", "Red Mountain Flower", "River Betty", "Rock Warbler Egg", "Sabre Cat Tooth", "Salt Pile", "Scaly Pholiota", "Silverside Perch", "Skeever Tail", "Slaughterfish Egg", "Slaughterfish Scales", "Small Antlers", "Small Pearl", "Snowberries", "Spider Egg", "Spriggan Sap", "Swamp Fungal Pod", "Taproot", "Thistle Branch", "Torchbug Thorax", "Troll Fat", "Tundra Cotton", "Vampire Dust", "Void Salts", "Wheat", "White Cap", "Wisp Wrappings"];
-    state.includedIngredients = new Set(most_all);
-
-    renderIngreds();
-    renderRecipes();
-  };
-
-  metaDiv.appendChild(ls);
 }
 
 /* -----------------------------
@@ -395,7 +360,6 @@ function renderEffects() {
 
 }
 
-
 /* -----------------------------
    RENDER RECIPES
 ------------------------------ */
@@ -478,11 +442,8 @@ function renderRecipes() {
   console.log(JSON.stringify({
     'three': state.threeOnly,
     'pure': state.pureOnly,
-    // recipes: RECIPES.length,
-    // filtered: RECIPES.filter(matches).length,
     width: window.innerWidth,
     height: window.innerHeight,
-    // minDim: Math.min(window.innerWidth, window.innerHeight),
     maxTouchPoints: navigator.maxTouchPoints,
     isPhone: isPhone()
   }));
@@ -499,10 +460,9 @@ const NamedListsUI = {
   LS_NAMED: "ns:v1.namedLists",
   LS_LAST: "ns:v1.lastUsedList",
 
-
   init() {
     this.dialog = document.getElementById("manageListsDialog");
-    this.listContainer = this.dialog.querySelector("#namedListsContainer");
+    this.listContainer = document.getElementById("namedListsContainer");
 
     this.dialog.querySelector("#btn-save-current")
       .addEventListener("click", this.save.bind(this));
@@ -606,24 +566,6 @@ function loadLastUsedList() {
 
   setLastUsedList("Default Ingredients");
 }
-
-// --------------------------------------------------------
-
-// function addCurrentToNamedList() {
-
-//   const name = prompt("Enter a name for this include list:");
-
-//   if (!name) return;
-
-//   const namedLists = getNamedLists();
-
-//   namedLists[name] = [...state.includedIngredients];
-
-//   setNamedLists(namedLists);
-//   setLastUsedList(name);
-
-//   renderNamedLists();
-// }
 
 // --------------------------------------------------------
 
