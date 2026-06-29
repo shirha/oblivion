@@ -36,8 +36,8 @@ Ingredients: Chaurus EggsLarge Antlers
 Effects: Fortify Stamina
 Value: 82
 
-and no more recipes with Fortify Health will be displayed -->
+and no more recipes with Fortify Health will be displayed
 Fortify Health with be moved the the excluded pool of Effects
 and pink exclamation point will be next to Recipe indicating
 you have an Effect in the Excluded pool. The exclamation will
-remain until all effects are added back to the effects included pool)
+remain until all effects are added back to the effects included pool -->
