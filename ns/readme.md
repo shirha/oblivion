@@ -1,2 +1,1 @@
-#### Nordic Souls Recipe Finder
-[app](https://shirha.github.io/oblivion/ns/)
+[Nordic Souls Recipe Finder](https://shirha.github.io/oblivion/ns/)
