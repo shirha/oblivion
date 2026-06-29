@@ -1,7 +1,7 @@
 [Nordic Souls Recipe Finder](https://shirha.github.io/oblivion/ns/)
 
 The app contains 15,500 recipes. Which ones being displayed in the Recipe panel depends on what is selected in the Filters panel.
-The Filters panel manages two pools for ingredients and effect. Recipes are not if there ingredient and effect are in the excluded lists. 
+The Filters panel manages two pools for ingredients and effect. Recipes are not displayed if there ingredient and effect are in the excluded lists. 
 They can be moved between these lists using the ➖︎ and ➕︎ buttons.
 
 When an ingredient name is clicked in the Filters panel it is toggle on and only recipes with that ingredient are displayed. Same for effects.
