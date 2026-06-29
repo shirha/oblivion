@@ -15,10 +15,9 @@ make the most expensive potions you don't want to be excluding any effects!
 The goal of the recipe finder is to make it easy to grind out the 
 most expensive potions. When you run out of an ingredient at the top
 of the list just click it and it goes into the ingrdient excluded pool. 
-
+This removes the recipe from the Recipe panel.
 Also, if you don't want to use a particular ingredient click it and 
-move it to the ingredient excluded pool. The red minus button in the
-Filter panel also moves the ingredient to the excluded pool.
+move it to the ingredient excluded pool. 
 
 You can also use the filter panel to search for a recipe. If you click on an ingredient
 in the Filters panel you only get recipes with that ingredient. If you click on an
