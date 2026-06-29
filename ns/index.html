@@ -158,10 +158,6 @@
       flex-direction: column;
     }
 
-    #btn-clear-all {
-      background-color: #ffcce6;
-    }
-
     .btn-move {
       display: inline-block;
       background-color: #ffcce6;
@@ -195,11 +191,36 @@
       cursor: pointer;
     }
 
+    /*#manageListsDialog input {
+      width: 200px;
+    }*/
+
     #manageListsDialog input:focus, 
     #manageListsDialog textarea:focus {
       outline: none;
       box-shadow: none;
     }
+
+    #btn-clear-all {
+      background-color: #ffcce6;
+      margin-bottom: 20px !important;
+    }
+
+.named-list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.named-list input {
+  flex: 1;
+  min-width: 0;      /* important! allows shrinking */
+}
+
+.named-list button {
+  flex: 0 0 auto;    /* keep buttons their natural size */
+}
 
   </style>
 </head>
@@ -271,10 +292,11 @@
 
   <h2>Manage Include Lists</h2>
 
+  <button id="btn-clear-all">Clear All Saved Lists</button>
+  <br>
   <div id="namedListsContainer"></div>
 
-  <button id="btn-save-current">Save Current Included Pool</button><button id="btn-clear-all">Clear All Saved Lists</button>
-  <br>
+  <button id="btn-save-current">Save Current Included Pool</button>
   <button id="btn-close">Close</button>
 
 </dialog>
