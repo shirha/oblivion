@@ -16,7 +16,7 @@ If you want to save your ingredients included pool for later you can click the S
 
 The effects excluded pool is to allow you to search for recipes that don't
 have that effect. You are warn that you have an effect in the effects excluded
-pool with a pink ! to the right of the Recipe panel title. If you are trying to
+pool with a pink <span style="color:#ff99ce;"><b><i>!</i></b></span> to the right of the Recipe panel title. If you are trying to
 make the most expensive potions you don't want to be excluding any effects!
 
 
@@ -37,22 +37,22 @@ so the relative value of all the recipes should be the same.
 if you run out of Bear Claws then when you click it, 
 Bear Claws move to the Excluded pool in Filters
 
-Recipes
-Ingredients: Bear Claws, Hanging Moss
-Effects: Fortify Health, Fortify One-handed
+Recipes\
+Ingredients: Bear Claws, Hanging Moss\
+Effects: Fortify Health, Fortify One-handed\
 Value: 122
 
 The next recipe on the list is 
 
-Ingredients: Blue Mountain Flower, Hanging Moss
-Effects: Fortify Health
-Value: 82
+Ingredients: Blue Mountain Flower, Hanging Moss\
+Effects: Fortify Health\
+Value: 82\
 
 If you click on Fortify Health the next recipe on the list is
 
-Ingredients: Chaurus EggsLarge Antlers
-Effects: Fortify Stamina
-Value: 82
+Ingredients: Chaurus EggsLarge Antlers\
+Effects: Fortify Stamina\
+Value: 82\
 
 and no more recipes with Fortify Health will be displayed
 Fortify Health with be moved the the excluded pool of Effects
