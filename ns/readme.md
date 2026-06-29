@@ -1,6 +1,6 @@
 [Nordic Souls Recipe Finder](https://shirha.github.io/oblivion/ns/)
 
-The goal of the recipe finder is to make it easy to grind out the 
+<detail>The goal of the recipe finder is to make it easy to grind out the 
 most expensive potions. When you run out of an ingredient at the top
 of the list just click it and it goes into the ingrdient excluded pool. 
 
@@ -35,4 +35,4 @@ and no more recipes with Fortify Health will be displayed
 Fortify Health with be moved the the excluded pool of Effects
 and pink exclamation point will be next to Recipe indicating
 you have an Effect in the Excluded pool. The exclamation will
-remain until all effects are added back to the effects included pool</summary>
+remain until all effects are added back to the effects included pool</summary></detail>
