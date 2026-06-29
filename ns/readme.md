@@ -11,6 +11,7 @@ The effects excluded pool is to allow you to search for recipes that don't
 have that effect. You are warned if you have an effect in the excluded
 pool with a pink<i>❗</i>to the right of the Recipe panel title. If you are trying to
 make the most expensive potions you don't want to be excluding any effects!
+Ingredients in the excluded list just means you do have that ingredient in your inventory.
 
 The goal of the recipe finder is to make it easy to grind out the 
 most expensive potions. When you run out of an ingredient at the top
