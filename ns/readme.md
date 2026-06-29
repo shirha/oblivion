@@ -16,7 +16,7 @@ If you want to save your ingredients included pool for later you can click the S
 
 The effects excluded pool is to allow you to search for recipes that don't
 have that effect. You are warn that you have an effect in the effects excluded
-pool with a pink <span style="color:#ff99ce;"><b><i>!</i></b></span> to the right of the Recipe panel title. If you are trying to
+pool with a pink <i>❗</i> to the right of the Recipe panel title. If you are trying to
 make the most expensive potions you don't want to be excluding any effects!
 
 
