@@ -11,7 +11,7 @@ Filter panel also moves the ingredient to the excluded pool.
 You can also use the filter panel to search for a recipe. 
 
 In the filter panel the ingredients are managed in two pools, included and excluded. 
-You move them around in the pool using the \[+] and \[-] buttons.
+You move them around in the pool using the ➕︎ and ➖︎ buttons.
 If you want to save your ingredients included pool for later you can click the Save button.
 
 The effects excluded pool is to allow you to search for recipes that don't
