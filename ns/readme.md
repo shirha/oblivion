@@ -26,7 +26,7 @@ effect you only get recipes with that effect. Also, if any ingredients or effect
 in the excluded pool those recipes are not shown either.
 
 The **Pure** button excludes any mixed recipes from the Recipes panel. 
-By default only 2 ingredient recipes are shown on the Recipes panel. **3 Ing ** button includes the ingredient recipes.
+By default only 2 ingredient recipes are shown on the Recipes panel. **3 Ing** button includes the ingredient recipes.
 **Show** All displays all the effects for each ingredient and for each effect is shows all the ingredients with that effect.
 If you want to save your ingredients included pool for later you can click the Save button.
 
