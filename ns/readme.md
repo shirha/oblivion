@@ -34,9 +34,9 @@ If you want to save your ingredients included pool for later in localStorage you
 [Nordic Souls](https://www.nexusmods.com/skyrimspecialedition/mods/77497) is a 
 [Simon Rim](https://www.nexusmods.com/profile/SimonMagus/mods?gameId=1704) Wabbajack modlist. 
 It uses [Apothecary](https://www.nexusmods.com/skyrimspecialedition/mods/52130) an Alchemy Overhaul. 
-Apothecary changed a lot of the Skyrim vanilla ingredient effects. You still get mixed potions, that is,
-potions with positive and negative effects but if any effect is negative it makes a **poison** and the value
-is the sum of all the negative effects. The value of the positive effects are not added.
+Apothecary changed a lot of the Skyrim vanilla effects on each ingredient. You still get mixed potions, 
+potions with positive and negative effects, but if any effect is negative it makes a **poison** and the value
+is the sum of all the negative effects. The value of the positive effects are not dropped.
 
 Note. Potion values were calculated at Alchemy ≈50 and a perk in Herbalist, Concentration and Intensity.
 
