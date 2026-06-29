@@ -1,4 +1,4 @@
-This is the [base code](https://shirha.github.io/oblivion/base/)<br/> given to me by ChatGPT 5. Awesome.
+This is the [base code](https://shirha.github.io/oblivion/base/) given to me by ChatGPT 5. Awesome.
 
 
 My favorite Poison<br/>
