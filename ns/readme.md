@@ -8,7 +8,10 @@ Also, if you don't want to use a particular ingredient click it and
 move it to the ingredient excluded pool. The red minus button in the
 Filter panel also moves the ingredient to the excluded pool.
 
-You can also use the filter panel to search for a recipe. 
+You can also use the filter panel to search for a recipe. If you click on an ingredient
+in the Filters panel you only get recipes with that ingredient. If you click on an
+effect you only get recipes with that effect. Also, if any ingredients or effects are
+in the excluded pool those recipes are not shown either.
 
 In the filter panel the ingredients are managed in two pools, included and excluded. 
 You move them around in the pool using the ➕︎ and ➖︎ buttons.
