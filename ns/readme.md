@@ -10,7 +10,7 @@ Filter panel also moves the ingredient to the excluded pool.
 
 
 
-[||](The first recipe on the list is Fortify Health + Fortify One-handed
+[](The first recipe on the list is Fortify Health + Fortify One-handed
 if you run out of Bear Claws then when you click it, 
 Bear Claws move to the Excluded pool in Filters
 
