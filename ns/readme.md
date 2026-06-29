@@ -10,7 +10,7 @@ Filter panel also moves the ingredient to the excluded pool.
 
 To support that goal, you can filter the recipe list. In the filter panel 
 the ingredients are managed in two pools, included and excluded. You move 
-them around in the pool using the [+] and [-] buttons.
+them around in the pool using the \[+] and \[-] buttons.
 
 
 
