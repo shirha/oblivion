@@ -6,6 +6,11 @@ They can be moved between these lists using the ➖︎ and ➕︎ buttons.
 When an ingredient name is clicked in the Filters panel it is toggle on and only recipes with that ingredient are displayed. Same for effects.
 When an ingredient name or effect is clicked in the Recipes panel that ingredient or effect is moved to the excluded list and those recipes are not shown anymore.
 
+The effects excluded pool is to allow you to search for recipes that don't
+have that effect. You are warned if you have an effect in the excluded
+pool with a pink<i>❗</i>to the right of the Recipe panel title. If you are trying to
+make the most expensive potions you don't want to be excluding any effects!
+
 The goal of the recipe finder is to make it easy to grind out the 
 most expensive potions. When you run out of an ingredient at the top
 of the list just click it and it goes into the ingrdient excluded pool. 
@@ -19,16 +24,7 @@ in the Filters panel you only get recipes with that ingredient. If you click on 
 effect you only get recipes with that effect. Also, if any ingredients or effects are
 in the excluded pool those recipes are not shown either.
 
-In the filter panel the ingredients are managed in two pools, included and excluded. 
-You move them around in the pool using the ➕︎ and ➖︎ buttons.
 If you want to save your ingredients included pool for later you can click the Save button.
-
-The effects excluded pool is to allow you to search for recipes that don't
-have that effect. You are warn that you have an effect in the effects excluded
-pool with a pink<i>❗</i>to the right of the Recipe panel title. If you are trying to
-make the most expensive potions you don't want to be excluding any effects!
-
-
 
 [Nordic Souls](https://www.nexusmods.com/skyrimspecialedition/mods/77497) is a 
 [Simon Rim](https://www.nexusmods.com/profile/SimonMagus/mods?gameId=1704) Wabbajack modlist. 
