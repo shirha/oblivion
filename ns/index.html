@@ -158,23 +158,49 @@
       flex-direction: column;
     }
 
+    #btn-clear-all {
+      background-color: #ffcce6;
+    }
+
     .btn-move {
-        display: inline-block;
-        background-color: #ffcce6;
-        border-radius: 50%;
-        padding: 2px 4px;
-        cursor: pointer;
-        margin-right: 4px;
+      display: inline-block;
+      background-color: #ffcce6;
+      border-radius: 50%;
+      padding: 2px 4px;
+      cursor: pointer;
+      margin-right: 4px;
     }
     .btn-move.active {
       background-color: #80ff80;
     }
 
     .item-list {
-        margin-left: 40px;     
-        color: #333;          
-        font-size: 0.9em;     
+      margin-left: 40px;     
+      color: #333;          
+      font-size: 0.9em;     
     }
+
+    #manageListsDialog {
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    #manageListsDialog button,
+    #manageListsDialog input {
+      margin: 4px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      padding: 4px 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #manageListsDialog input:focus, 
+    #manageListsDialog textarea:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
   </style>
 </head>
 <body>
@@ -240,6 +266,31 @@
       <div class="hint"></div>
     </div>
   </div>
+
+<dialog id="manageListsDialog">
+
+  <h2>Manage Include Lists</h2>
+
+  <div id="namedListsContainer"></div>
+
+  <button id="btn-save-current">Save Current Included Pool</button><button id="btn-clear-all">Clear All Saved Lists</button>
+  <br>
+  <button id="btn-close">Close</button>
+
+</dialog>
+
+<dialog id="saveListDialog">
+
+    <h3>Save Include List</h3>
+
+    <input id="newListName">
+
+    <div class="dialogButtons">
+        <button id="saveListOK">Save</button>
+        <button id="saveListCancel">Cancel</button>
+    </div>
+
+</dialog>
 
   <script src="app.js"></script>
 </body>
