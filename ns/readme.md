@@ -24,14 +24,18 @@ in the Filters panel you only get recipes with that ingredient. If you click on 
 effect you only get recipes with that effect. Also, if any ingredients or effects are
 in the excluded pool those recipes are not shown either.
 
+The **Pure** button excludes any mixed recipes from the Recipes panel. 
+By default on 2 ingredient recipes are shown on the Recipes panel. **3 Ing ** button includes the ingredient recipes.
+**Show** All displays all the effects for each ingredient and for each effect is shows all the ingredients with that effect.
 If you want to save your ingredients included pool for later you can click the Save button.
+
 
 [Nordic Souls](https://www.nexusmods.com/skyrimspecialedition/mods/77497) is a 
 [Simon Rim](https://www.nexusmods.com/profile/SimonMagus/mods?gameId=1704) Wabbajack modlist. 
 It uses [Apothecary](https://www.nexusmods.com/skyrimspecialedition/mods/52130) an Alchemy Overhaul. 
 Apothecary changed a lot of the Skyrim vanilla ingredient effects. You still get mixed potions, that is,
-potions with positive and negative effects but if any effects are negative it makes a **poison** and the value
-is the sum of all the negative effects. The value of the positive effects are not included.
+potions with positive and negative effects but if any effect is negative it makes a **poison** and the value
+is the sum of all the negative effects. The value of the positive effects are not added.
 
 Note. Potion values were calculated at Alchemy ≈50 and a perk in Herbalist, Concentration and Intensity.
 
