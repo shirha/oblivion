@@ -4,7 +4,7 @@ The app contains 15,500 recipes. Which ones being displayed in the Recipe panel 
 The Filters panel manages two pools for ingredients and effect. Recipes are not displayed if there ingredient or effect are in the excluded lists. 
 They can be moved between these lists using the ➖︎ and ➕︎ buttons.
 
-When an ingredient name is clicked in the Filters panel it is toggle on and only recipes with that ingredient are displayed. Same for effects.
+When an ingredient name is clicked in the Filters panel it is toggled on and only the recipes with that ingredient are displayed. Same for effects.
 When an ingredient name or effect is clicked in the Recipes panel that ingredient or effect is moved to the excluded list and those recipes are not shown anymore.
 
 The effects excluded pool is to allow you to search for recipes that don't
