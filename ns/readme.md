@@ -25,7 +25,7 @@ in the Filters panel you only get recipes with that ingredient. If you click on 
 effect you only get recipes with that effect. Also, if any ingredients or effects are
 in the excluded pool those recipes are not shown either.
 
-The **Pure** button excludes any mixed recipes from the Recipes panel.\
+The **Pure** button excludes any mixed recipes from the Recipes panel. The value is yellow for mixed recipes.\
 **3 Ing** button includes **ALL** recipes. By default only 2-ingredient recipes are shown on the Recipes panel.\
 **Show All** displays all the effects for each ingredient and for each effect, all the ingredients with that effect are listed.\
 If you want to save your ingredients included pool for later in localStorage you can click the **Save** button.
