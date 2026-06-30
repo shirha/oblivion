@@ -36,7 +36,7 @@ If you want to save your ingredients included pool for later in localStorage you
 It uses [Apothecary](https://www.nexusmods.com/skyrimspecialedition/mods/52130) an Alchemy Overhaul. 
 Apothecary changed a lot of the Skyrim vanilla effects on each ingredient. You still get mixed potions, 
 potions with positive and negative effects, but if any effect is negative it makes a **poison** and the value
-is the sum of all the negative effects. The value of the positive effects are not dropped.
+is the sum of all the negative effects. The value of the positive effects are dropped.
 
 Note. Potion values were calculated at Alchemy ≈50 and a perk in Herbalist, Concentration and Intensity.
 
