@@ -709,7 +709,7 @@ window.addEventListener('orientationchange', updateLayout);
 
 async function loadData() {
   try {
-    const res = await fetch("data/recipes.json");
+    const res = await fetch("data/recipes1.json");
     RECIPES = await res.json();
 
     console.log("Recipes loaded successfully:", Object.keys(RECIPES));
