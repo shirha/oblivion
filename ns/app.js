@@ -263,9 +263,10 @@ function renderFilterList({
 
     item.appendChild(createMoveButton(isIncluded, () => {
 
-      if (isIncluded)
+      if (isIncluded) {
         includedSet.delete(label);
-      else
+        activeSet.delete(label);
+      } else
         includedSet.add(label);
 
       renderSelf();
@@ -417,6 +418,7 @@ function renderRecipes() {
       el.textContent = i;
       el.onclick = () => {
         state.includedIngredients.delete(i);
+        state.ingredients.delete(i);
         renderIngreds();
         renderRecipes();
       };
@@ -430,6 +432,7 @@ function renderRecipes() {
       el.onclick = () => {
         state.effectsWarning = true
         state.includedEffects.delete(e);
+        state.effects.delete(e);
         renderEffects();
         renderRecipes();
       };
@@ -734,3 +737,44 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderRecipes();
 });
 
+/**
+(opencv) O:\Wabbajack\project\ocr\ns>python simple_list1.py
+Enter the path to your UTF-8 text file: app.js
+
+const version = "1.1"
+let RECIPES = {};
+const MAX_RECIPES = 40;
+const state = {
+const isPure = r => new Set(r.type).size == 1;
+let dialog = null;
+let listContainer = null;
+
+function matches(recipe) {
+function setupNav() {
+function renderMeta() {
+
+function createChip(label, active, onclick) {
+function createMoveButton(included, onclick) {
+
+function renderFilterList({
+function renderIngreds() {
+function renderEffects() {
+function renderRecipes() {
+
+const NamedListsUI = {
+function openManageDialog() {
+function getNamedLists() {
+function setNamedLists(namedLists) {
+function getLastUsedList() {
+function setLastUsedList(name) {
+function ensureDefaultLists() {
+function loadLastUsedList() {
+function loadLocalStorage() {
+function loadNamedList(name) {
+function renameNamedList(oldName) {
+function deleteNamedList(name) {
+function renderNamedLists() {
+
+function isPhone() {
+function updateLayout() {
+*/
