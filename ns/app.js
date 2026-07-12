@@ -19,6 +19,7 @@ const state = {
   pureOnly: false,
   threeOnly: false,
 };
+const isPoison = r => r.type.some(i => i === 1);
 const isPure = r => new Set(r.type).size == 1;
 
 let dialog = null;
@@ -115,6 +116,7 @@ function setupNav() {
 /* SCROLL INTO VIEW ---------- */
 
   const ingredsFilters = document.getElementById("ingredsH3"); // .previousElementSibling;
+  const effectsFilters = document.getElementById("effectsH3"); // .previousElementSibling;
 
   ingredsFilters?.addEventListener("click", () => {
     effectsFilters.scrollIntoView({
@@ -124,8 +126,6 @@ function setupNav() {
       container: "nearest"   // Modern browsers only
     });
   });
-
-  const effectsFilters = document.getElementById("effectsH3"); // .previousElementSibling;
 
   effectsFilters?.addEventListener("click", () => {
     ingredsFilters.scrollIntoView({
@@ -391,6 +391,9 @@ function renderRecipes() {
     const div = document.createElement("div");
     div.className = "recipe";
 
+    let label = isPoison(r) ? "Poison" : "Potion";
+    let mixed = isPure(r) ? "" : "mixed";
+
     div.innerHTML = `
       <div>
         <b>Ingredients:</b>
@@ -403,8 +406,8 @@ function renderRecipes() {
       </div>
 
       <div>
-        <b>Value:</b>
-        <span class="value ${isPure(r) ? "" : "mixed"}">${r.value}</span>
+        <b>${label}:</b>
+        <span class="value ${mixed}">${r.value}</span>
         <hr>
       </div>
     `;
@@ -777,4 +780,7 @@ function renderNamedLists() {
 
 function isPhone() {
 function updateLayout() {
+
+async function loadData() {
+document.addEventListener('DOMContentLoaded', async () => {
 */
