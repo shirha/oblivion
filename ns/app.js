@@ -211,7 +211,7 @@ function renderMeta() {
 
   option.onclick = openOptionDialog;
 
-  metaDiv.appendChild(option);
+  // metaDiv.appendChild(option);
 }
 
 /* -----------------------------
