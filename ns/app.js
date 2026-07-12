@@ -204,6 +204,14 @@ function renderMeta() {
   save.onclick = openManageDialog;
 
   metaDiv.appendChild(save);
+
+  const option = document.createElement("div");
+  option.className = "chip";
+  option.textContent = "⚙";
+
+  option.onclick = openOptionDialog;
+
+  metaDiv.appendChild(option);
 }
 
 /* -----------------------------
@@ -379,8 +387,8 @@ function renderRecipes() {
   const hint = document.querySelector(".hint");
 
   if (filteredAll.length > MAX_RECIPES) {
-    hint.textContent =
-      `Showing first ${MAX_RECIPES} of ${filteredAll.length} recipes (${el.clientWidth})`;
+    hint.innerHTML =
+      `Showing first ${MAX_RECIPES} of ${filteredAll.length} recipes <small>(${el.clientWidth}&thinsp;w)</small>`;
   } else {
     hint.textContent =
       `Showing ${filteredAll.length} recipes`;
@@ -462,19 +470,25 @@ function renderRecipes() {
 const NamedListsUI = {
   dialog: null,
   listContainer: null,
+  vanilla: null,
 
   LS_NAMED: "ns:v1.namedLists",
   LS_LAST: "ns:v1.lastUsedList",
+  LS_VANILLA: "ns:v1.vanilla",
 
   init() {
     this.dialog = document.getElementById("manageListsDialog");
     this.listContainer = document.getElementById("namedListsContainer");
+    this.vanilla = getVanilla();
 
     this.dialog.querySelector("#btn-save-current")
       .addEventListener("click", this.save.bind(this));
 
     this.dialog.querySelector("#btn-clear-all")
       .addEventListener("click", this.clear.bind(this));
+
+    this.dialog.querySelector("#btn-vanilla")
+      .addEventListener("click", this.json_toggle.bind(this));
 
     this.dialog.querySelector("#btn-close")
       .addEventListener("click", () => this.dialog.close?.());
@@ -499,11 +513,25 @@ const NamedListsUI = {
 
     renderNamedLists();
   },
+  json_toggle() {
+    const el = document.getElementById("btn-vanilla");
+    const state = getVanilla();
+    // console.log(`vanilla: ${state}`);
+
+    if (state === "off") {
+      el.textContent = "Vanilla";
+      setVanilla("on");
+    } else {
+      el.textContent = "Apothe";
+      setVanilla("off");
+    }
+    console.log(`vanilla: ${getVanilla()}`);
+  },
   clear() {
     if (!confirm("Delete ALL saved include lists?")) return;
 
-    localStorage.removeItem(this.LS_NAMED);
-    localStorage.removeItem(this.LS_LAST);
+    localStorage.removeItem(this.LS_NAMED+"_"+this.vanilla);
+    localStorage.removeItem(this.LS_LAST)+"_"+this.vanilla;
 
     renderNamedLists(); // refresh UI
   },
@@ -516,20 +544,35 @@ function openManageDialog() {
     NamedListsUI.dialog.showModal();
 }
 
+function openOptionDialog() {
+
+    renderNamedLists();
+
+    NamedListsUI.dialog.showModal();
+}
+
 function getNamedLists() {
-  return JSON.parse(localStorage.getItem(NamedListsUI.LS_NAMED)) || {};
+  return JSON.parse(localStorage.getItem(NamedListsUI.LS_NAMED+"_"+NamedListsUI.vanilla)) || {};
 }
 
 function setNamedLists(namedLists) {
-  localStorage.setItem(NamedListsUI.LS_NAMED, JSON.stringify(namedLists));
+  localStorage.setItem(NamedListsUI.LS_NAMED+"_"+NamedListsUI.vanilla, JSON.stringify(namedLists));
 }
 
 function getLastUsedList() {
-  return localStorage.getItem(NamedListsUI.LS_LAST);
+  return localStorage.getItem(NamedListsUI.LS_LAST+"_"+NamedListsUI.vanilla);
 }
 
 function setLastUsedList(name) {
-  localStorage.setItem(NamedListsUI.LS_LAST, name);
+  localStorage.setItem(NamedListsUI.LS_LAST+"_"+NamedListsUI.vanilla, name);
+}
+
+function getVanilla() {
+  return localStorage.getItem(NamedListsUI.LS_VANILLA) || "off";
+}
+
+function setVanilla(name) {
+  localStorage.setItem(NamedListsUI.LS_VANILLA, name);
 }
 
 // --------------------------------------------------------
@@ -537,7 +580,6 @@ function setLastUsedList(name) {
 function ensureDefaultLists() {
 
   const most_all = [ "Abecean Longfin", "Bear Claws", "Bee", "Beehive Husk", "Bleeding Crown", "Blisterwort", "Blue Butterfly Wing", "Blue Dartwing", "Blue Mountain Flower", "Bone Meal", "Briar Heart", "Butterfly Wing", "Canis Root", "Charred Skeever Hide", "Chaurus Eggs", "Chicken's Egg", "Creep Cluster", "Cyrodilic Spadetail", "Deathbell", "Dragon's Tongue", "Dwarven Oil", "Ectoplasm", "Elves Ear", "Eye Of Sabre Cat", "Falmer Ear", "Fire Salts", "Fly Amanita", "Frost Mirriam", "Frost Salts", "Garlic", "Giant Lichen", "Giant's Toe", "Glow Dust", "Glowing Mushroom", "Grass Pod", "Hagraven Claw", "Hagraven Feathers", "Hanging Moss", "Hawk Beak", "Hawk Feathers", "Histcarp", "Honeycomb", "Ice Wraith Teeth", "Imp Stool", "Jazbay Grapes", "Juniper Berries", "Large Antlers", "Lavender", "Luna Moth Wing", "Moon Sugar", "Mora Tapinella", "Mudcrab Chitin", "Namira's Rot", "Nightshade", "Nirnroot", "Nordic Barnacle", "Orange Dartwing", "Pearl", "Pine Thrush Egg", "Purple Mountain Flower", "Red Mountain Flower", "River Betty", "Rock Warbler Egg", "Sabre Cat Tooth", "Salt Pile", "Scaly Pholiota", "Silverside Perch", "Skeever Tail", "Slaughterfish Egg", "Slaughterfish Scales", "Small Antlers", "Small Pearl", "Snowberries", "Spider Egg", "Spriggan Sap", "Swamp Fungal Pod", "Taproot", "Thistle Branch", "Torchbug Thorax", "Troll Fat", "Tundra Cotton", "Vampire Dust", "Void Salts", "Wheat", "White Cap", "Wisp Wrappings"];
-//const defaults = [ "Bear Claws", "Blue Mountain Flower", "Canis Root", "Chaurus Eggs", "Chicken's Egg", "Deathbell", "Glow Dust", "Hanging Moss", "Ice Wraith Teeth", "Imp Stool", "Large Antlers", "Luna Moth Wing", "Nightshade", "Nirnroot", "River Betty", "Salt Pile", "Spider Egg", "Swamp Fungal Pod", "Vampire Dust"];
   const defaults = ["Blue Butterfly Wing", "Blue Mountain Flower", "Butterfly Wing", "Charred Skeever Hide", "Chicken's Egg", "Dragon's Tongue", "Elves Ear", "Fly Amanita", "Jazbay Grapes", "Lavender", "Mora Tapinella", "Nightshade", "Nirnroot", "Purple Mountain Flower", "Red Mountain Flower", "Salmon Roe", "Salt Pile", "Slaughterfish Egg", "Snowberries", "Thistle Branch", "Tundra Cotton", "Wheat", "White Cap"];
   const namedLists = getNamedLists();
 
@@ -655,6 +697,11 @@ function renderNamedLists() {
 
   const namedLists = getNamedLists();
   const last = getLastUsedList();
+  const vanilla = getVanilla();
+  console.log(`vanilla: ${vanilla}`);
+  if (vanilla === "on") {
+    document.getElementById("btn-vanilla").textContent = "Vanilla";
+  }
 
   NamedListsUI.listContainer.innerHTML = "";
 
@@ -714,8 +761,10 @@ window.addEventListener('resize', updateLayout);
 window.addEventListener('orientationchange', updateLayout);
 
 async function loadData() {
+  const vanilla = getVanilla(); //  console.log(`vanilla: ${vanilla}`,vanilla === "true",vanilla === true);
+
   try {
-    const res = await fetch("data/recipes1.json");
+    const res = await fetch(`data/recipes_${vanilla === "on" ? "vanilla" : "apothe"}.json`);
     RECIPES = await res.json();
 
     console.log("Recipes loaded successfully:", Object.keys(RECIPES));
